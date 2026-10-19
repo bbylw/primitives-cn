@@ -1,0 +1,71 @@
+---
+title: 开放组合
+description: 每个部件都能单独包裹、自定义，这是 asChild 的底层机制。
+---
+
+import DocDemo from '../../components/DocDemo.astro';
+import FragmentWall from '../../components/FragmentWall.astro';
+import FragmentWallTwo from '../../components/FragmentWallTwo.astro';
+
+# 开放组合
+
+Radix Primitives 被设计为可以按你的需要改造。开放的组件架构给了你对每一个部件的细粒度访问权，你可以把它们包裹起来，加上自己的事件监听、props 或 ref。
+
+## 部件是公开的
+
+一个组件不是黑盒。以 `Dialog` 为例，你手上真正拿到的是这些具名部件：
+
+- `Dialog.Root`
+- `Dialog.Trigger`
+- `Dialog.Portal`
+- `Dialog.Overlay`
+- `Dialog.Content`
+- `Dialog.Title`
+- `Dialog.Description`
+- `Dialog.Close`
+
+它们的清单不是写在文档里就算数，而是各包真实导出的名字。本站首页的解剖台里显示的属性就来自这些部件渲染出的真实 DOM。
+
+## asChild
+
+每个部件都接受 `asChild`。传了之后，组件会跳过自己渲染的那一层元素，把自己的 props 合并到你给的子元素上。
+
+```tsx
+import { Dialog } from 'radix-ui';
+
+// 触发器渲染成 <a> 而不是 <button>
+<Dialog.Trigger asChild>
+  <a href="/settings">前往设置</a>
+</Dialog.Trigger>
+```
+
+底层的实现是 `Slot` 原语：`props` 合并到已有元素上，其余的 ref 与事件也一并接过去。
+
+## 包裹你自己的组件
+
+因为部件是公开的，你可以写一层自己的封装，之后整个项目都用自己的那层：
+
+```tsx
+import { Dialog, type DialogProps } from 'radix-ui';
+
+function DialogShell({ children, ...props }: DialogProps) {
+  return (
+    <Dialog.Root {...props}>
+      <Dialog.Portal>
+        <Dialog.Overlay className="backdrop" />
+        <Dialog.Content className="sheet">{children}</Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
+  );
+}
+```
+
+不需要 fork 源码，也不需要在组件外层再包一个 div 来监听事件。
+
+## 这一页涉及到的组件
+
+<FragmentWall />
+
+<FragmentWallTwo />
+
+<DocDemo kind="dialog" />

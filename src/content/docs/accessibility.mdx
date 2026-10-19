@@ -1,0 +1,84 @@
+---
+title: 无障碍
+description: WAI-ARIA 语义、可访问标签、键盘导航与焦点管理。
+---
+
+import DocDemo from '../../components/DocDemo.astro';
+import FragmentWall from '../../components/FragmentWall.astro';
+import FragmentWallTwo from '../../components/FragmentWallTwo.astro';
+
+# 无障碍
+
+Radix Primitives 遵循 WAI-ARIA 编写实践指南，并在大量现代浏览器与常用辅助技术上做过测试。
+
+我们处理了许多与无障碍相关的困难实现细节，包括 `aria` 与 `role` 属性、焦点管理和键盘导航。这意味着在多数场景下，你可以直接使用这些组件，而无需自己补齐这些细节。
+
+## WAI-ARIA
+
+由 W3C 发布并维护的 [WAI-ARIA](https://www.w3.org/TR/wai-aria-1.2/) 为 Radix 中大量常见的 UI 模式规定了语义。它的设计目的是为那些浏览器没有提供原生元素的控件赋予含义。
+
+举个例子：如果你用一个 `div` 而不是 `button` 元素来做按钮，就必须给这个 `div` 加上一些属性，屏幕阅读器与语音识别工具才知道它是个按钮。
+
+除了语义，不同类型的组件还对应着一套被广泛预期的行为。`button` 元素会以 `div` 不会的方式响应特定交互，因此开发者必须用 JavaScript 重新实现这些交互。[WAI-ARIA 编写实践](https://www.w3.org/TR/wai-aria-practices-1.2/) 为这些行为提供了额外指引。
+
+## 可访问标签
+
+对于许多内置表单控件，原生 HTML 的 `label` 元素被设计用来为对应的 `input` 提供语义含义与上下文。
+
+对于非表单控件，或者像 Radix 提供的这类自定义控件，[WAI-ARIA 规定了一套规范](https://www.w3.org/TR/wai-aria-1.2/#namecalculation)，告诉你如何为它们提供可访问名称与描述。
+
+只要可能，Radix Primitives 都会提供抽象来简化标注工作。`Label` 原语被设计成能与我们的许多控件配合使用。最终还是要由你来提供这些标签，好让用户在浏览你的应用时获得恰当的上下文。
+
+## 键盘导航
+
+许多复杂组件，比如 `Tabs` 与 `Dialog`，都带着用户对「如何用键盘或其他非鼠标输入操作其内容」的预期。Radix Primitives 依照 [WAI-ARIA 编写实践](https://www.w3.org/TR/wai-aria-practices-1.2/) 提供基本的键盘支持。
+
+下面两个组件可以直接试：按 Tab 键走进它们，再用方向键或空格操作。
+
+<DocDemo kind="tabs" />
+
+<DocDemo kind="dialog" />
+
+## 焦点管理
+
+正确的键盘导航与良好的标注通常需要一起管理焦点。当用户与某个元素交互、而交互又导致页面发生变化时，跟着交互把焦点移走，往往是有帮助的：这样下一个 Tab 停靠点在新的应用上下文中才是合乎逻辑的。
+
+在许多 Radix Primitives 中，焦点是根据用户在给定组件中通常会采取的交互来移动的。以 `AlertDialog` 为例：当模态框打开时，焦点会被程序化地移动到一个 `取消` 按钮上，以便预期用户会对这个提示作出回应。
+
+## ## 常用属性速查
+
+下面是这一页涉及到的组件，它们都能直接操作：
+
+<FragmentWall />
+
+<FragmentWallTwo />
+
+## 这些属性是给谁用的
+
+上面提到的每个属性，最终都要落到某个具体的人身上。
+
+<figure class="doc-fig">
+  <img
+    src="/img/refreshable-braille-display-2010-0123.jpg"
+    width="1920"
+    height="1440"
+    alt="一台可刷新的盲文点显器，键盘式按键下方是一排会随屏幕内容起伏的盲文点"
+    loading="lazy"
+    decoding="async"
+  />
+  <figcaption class="small muted">可刷新的盲文点显器。屏幕上出现的文字会以凸点从下方这排针里升起。图片：Eddau，CC0。</figcaption>
+</figure>
+
+<figure class="doc-fig">
+  <img
+    src="/img/blista-braille-typewriter-1.jpg"
+    width="1920"
+    height="1280"
+    alt="一台绿色的布里斯塔盲文打字机，六键键盘与滚筒一应俱全"
+    loading="lazy"
+    decoding="async"
+  />
+  <figcaption class="small muted">布里斯塔盲文打字机。图片：Rémi Kaupp，CC BY-SA 3.0。</figcaption>
+</figure>
+
+屏幕上少一条 `aria-checked`，对使用点显器的人来说就是一处读不到的状态。组件库把这些细节处理好，才谈得上可用。

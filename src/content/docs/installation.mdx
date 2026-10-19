@@ -1,0 +1,78 @@
+---
+title: 安装
+description: 装聚合包 radix-ui，或按组件单独安装 @radix-ui/react-*。
+---
+
+import DocDemo from '../../components/DocDemo.astro';
+import FragmentWall from '../../components/FragmentWall.astro';
+import FragmentWallTwo from '../../components/FragmentWallTwo.astro';
+
+# 安装
+
+## 推荐：聚合包
+
+我们建议安装 `radix-ui` 包，然后 import 你需要的原语。这是最简单的上手方式，能避免版本冲突或重复，也便于管理更新。
+
+```bash
+npm install radix-ui
+```
+
+```tsx
+import { Dialog, DropdownMenu, Tooltip } from 'radix-ui';
+```
+
+这个包是可以 tree-shake 的，所以你只会打包你真正用到的组件。
+
+## 逐个安装
+
+也可以单独安装每一个原语：
+
+```bash
+npm install @radix-ui/react-dialog
+npm install @radix-ui/react-dropdown-menu
+npm install @radix-ui/react-tooltip
+```
+
+```tsx
+import * as Dialog from '@radix-ui/react-dialog';
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import * as Tooltip from '@radix-ui/react-tooltip';
+```
+
+分开安装时，我们建议把 Radix 的所有包一起更新，以防共享依赖被重复安装、让产物体积变大。
+
+## 用包管理器
+
+`radix-ui` 是一个标准的 npm 包，用哪种包管理器都可以：
+
+```bash
+bun add radix-ui
+pnpm add radix-ui
+yarn add radix-ui
+```
+
+## 从源码构建
+
+如果你要在这个仓库里工作，先确保装好 pnpm：
+
+```bash
+npm install -g pnpm
+```
+
+然后安装依赖：
+
+```bash
+pnpm install
+```
+
+下面是一个真实的选择器，它同时也是上面两个安装方式的可操作版本：
+
+<DocDemo kind="select" />
+
+## 装上之后会得到什么
+
+聚合包里包含下面这些组件，下面每一格都是可以直接操作的真实组件：
+
+<FragmentWall />
+
+<FragmentWallTwo />

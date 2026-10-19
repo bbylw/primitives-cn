@@ -1,0 +1,410 @@
+{
+  "version": 1,
+  "at": "2026-10-19T14:57:21.475Z",
+  "seed": 2053568106,
+  "redraws": 0,
+  "input": {
+    "brief": "Radix Primitives 中文站：无样式无障碍 React 底层组件库，落地页 + 文档，要求秩序感强、模块统一、密度高但不乱",
+    "sector": "component",
+    "surface": "product",
+    "surfaceInferred": false,
+    "tone": "technical",
+    "have": [
+      "product-ui"
+    ],
+    "keep": [],
+    "avoid": [],
+    "sections": [
+      "features",
+      "showcase",
+      "how-it-works",
+      "stats",
+      "cta"
+    ],
+    "requestedSections": [
+      "features",
+      "showcase",
+      "how-it-works",
+      "stats",
+      "cta"
+    ],
+    "direction": "workbench"
+  },
+  "surface": "product",
+  "imagery": "interface",
+  "allow": [
+    "palette-purple"
+  ],
+  "direction": {
+    "id": "workbench",
+    "name": "The tool laid out as a workbench",
+    "sectors": [
+      "dashboard",
+      "dev-tool",
+      "saas",
+      "ai-product",
+      "component",
+      "docs",
+      "finance",
+      "other"
+    ],
+    "tones": [
+      "technical",
+      "quiet"
+    ],
+    "needs": [],
+    "idea": "The screen is a bench, not a brochure: one primary surface holds the real object of work at working size, and everything else is arranged around it as tools within reach, at one consistent scale. The idea comes from naming the screen's centre of gravity — the ledger, the canvas, the queue, the map, the diff — and giving it the stage while every control drops to a supporting size. Origin: the studied software sites that scored highest (Illoca's drafting table, Alethia, Longbow's construction grid) all treat the interface as an instrument, and each states its centre of gravity in one glance. The composition is the argument; there is no hero.",
+    "composition": "A fixed frame of three parts. A narrow tool rail (56–72px) at one edge on the ground colour, holding five to seven square controls at the 44px touch floor, icon-led with accessible names, the active one marked by the accent as a bar on its inner edge. The primary stage fills everything else, inset by one gutter, and carries the object of work at working size — a table, a chart, a canvas, a document. One inspector rail (280–360px) on the surface tone holds the selected item as label-and-value rows. Above them all, a slim header of about 56px with the product name at text size on the left and the one primary action as a solid button at the right margin. No panel is centred and no panel has its own margins: every edge is a frame edge or a gutter. Panels are separated by a single tone step, never by borders or shadows.",
+    "typography": "One text face plus one data face, and nothing else. Screen title 20–28px; panel headings 13–15px, one weight, sentence case; data 13–15px with tabular figures so columns scan vertically; labels quieter than the values they describe. Three sizes carry the whole screen, plus the small size for labels — no fourth, no fifth.",
+    "typeClasses": [
+      "grotesk-tight",
+      "grotesk-light",
+      "geometric"
+    ],
+    "colour": "One ground, one surface tone for every working panel, one accent reserved for the primary action and the selected state. A status family (positive, caution, danger) belongs to the data and is documented separately from the accent — the moment the accent appears on twelve badges it means nothing. No second neutral between the ground and the surface.",
+    "paletteTags": [
+      "light-neutral",
+      "dark-neutral",
+      "mono-accent"
+    ],
+    "imagery": "No photographs and no illustrations. The pictures are the tool's own panels, built in HTML at true size with believable content (references/imagery.md §7): real labels, numbers that reconcile, one row hovered or selected, correct alignment, and the attribute `data-ui` on each fragment's root so the inspector judges the frame around it and not the fragment's own control borders. Never a fake dashboard of grey bars.",
+    "sectionTags": [
+      "ui-led",
+      "dense",
+      "quiet"
+    ],
+    "motion": "pinned-story",
+    "richness": "Density with air in the right places, and one figure that leads. A working screen earns its richness from real content at a readable size — every column filled, every row meaningful, the totals reconciling — not from ornament. The single large figure or the single large object is what stops a dense screen from reading as a spreadsheet; without it, density is just clutter.",
+    "pitfalls": "Density without hierarchy: nine near-equal type sizes and twenty panels at the same weight. A fake dashboard of grey bars where data should be. A hero sentence above a working screen, which steals the first screen from the work. Every status in a coloured badge, so colour stops meaning anything. Cards inside cards. A dead control. Figures that do not add up. Panels whose difference is a 1px border rather than a tone step.",
+    "seenIn": [
+      "opl-dabbit",
+      "opl-dialkit",
+      "aww-alethia",
+      "opl-the-content-architecture"
+    ],
+    "allow": [],
+    "heroes": [
+      "stage-and-rail",
+      "figure-dominant"
+    ],
+    "photos": false
+  },
+  "hero": {
+    "id": "figure-dominant",
+    "name": "One figure and its support",
+    "archetype": "object-centre",
+    "directions": [
+      "workbench",
+      "editorial-report",
+      "product-performs",
+      "colour-chapters"
+    ],
+    "needs": [],
+    "blueprint": "The first screen is one figure and the thing that explains it. The figure occupies the left two-thirds, set at four to five times the size of any other figure on the screen, with its unit and its period in the small size immediately under it, on the same left margin. In the last third, aligned to the figure's top, sits the comparison that gives it meaning: a short table of three to five rows, or a second figure at a fraction of the size. Above the figure, on the same left margin, the screen's own controls: a period selector as a row of plain text toggles with the active one in the full ink and the others muted, and one action as a solid button flushed to the right margin. One sentence at 15px under the figure states what it means and where the numbers come from. No card, no border, no shadow: the figure sits directly on the ground. Everything on the screen shares two or three left edges.",
+    "mobile": "The figure is first, at 2.5 to 3 times the size of anything else, with its unit under it. The period selector becomes one row of text toggles that fits without sideways scrolling. The comparison table follows, trimmed to its three most important rows, with a plain text link to the rest. The one action becomes a full-width button. The sentence stays under the figure at the body size.",
+    "headline": "The figure's own label, one line, two to five words. The figure is the headline; do not put a sentence above it, and do not centre it.",
+    "motion": "colour-on-scroll",
+    "seenIn": [
+      "aww-alethia",
+      "opl-dialkit",
+      "aww-dragonfly-redux"
+    ]
+  },
+  "type": {
+    "id": "switzer-roman",
+    "name": "Switzer, at rest",
+    "class": "grotesk-light",
+    "display": {
+      "family": "Switzer",
+      "source": "fontshare",
+      "slug": "switzer",
+      "weights": [
+        400
+      ],
+      "italic": false,
+      "settings": "weight 400 · tracking -0.03em · leading 1.1 · sentence case; headings stay small (28–40px) and at most one line jumps to 5vw",
+      "css": "<link rel=\"preconnect\" href=\"https://api.fontshare.com\">\n<link rel=\"preconnect\" href=\"https://cdn.fontshare.com\" crossorigin>\n<link href=\"https://api.fontshare.com/v2/css?f[]=switzer@400,500&display=swap\" rel=\"stylesheet\">"
+    },
+    "text": {
+      "family": "Switzer",
+      "source": "fontshare",
+      "slug": "switzer",
+      "weights": [
+        400,
+        500
+      ],
+      "italic": false,
+      "settings": "400 for everything, 500 only for names and links · leading 1.45 · tracking -0.01em; hierarchy by ink against mid-grey",
+      "css": "<link rel=\"preconnect\" href=\"https://api.fontshare.com\">\n<link rel=\"preconnect\" href=\"https://cdn.fontshare.com\" crossorigin>\n<link href=\"https://api.fontshare.com/v2/css?f[]=switzer@400,500&display=swap\" rel=\"stylesheet\">"
+    },
+    "standsInFor": [
+      "Neue Haas Grotesk 55 Roman",
+      "Helvetica Now"
+    ],
+    "note": "A single roman weight of a Swiss neo-grotesk at two or three modest sizes; position and grey value do the work that size and bold usually do. Suits architects, galleries, studios and any quiet page where photographs carry the scale.",
+    "seenIn": [
+      "aww-revelatio-studio",
+      "opl-spatial",
+      "aww-pensatori-irrazionali",
+      "opl-compile"
+    ],
+    "links": [
+      "https://api.fontshare.com/v2/css?f[]=switzer@400,500&display=swap"
+    ],
+    "scale": {
+      "step-small": "clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem)",
+      "step-body": "clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem)",
+      "step-lead": "clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem)",
+      "step-head": "clamp(2rem, 1.3rem + 3.2vw, 4rem)"
+    },
+    "single": true
+  },
+  "palette": {
+    "id": "cool-grey-cobalt",
+    "name": "Cool grey, cobalt",
+    "tags": [
+      "mono-accent"
+    ],
+    "bg": "#eef0f3",
+    "surface": "#e2e5ea",
+    "ink": "#0b0c0e",
+    "muted": "#5d6470",
+    "accent": "#1f2de6",
+    "accentInk": "#ffffff",
+    "fields": [
+      {
+        "bg": "#1f2de6",
+        "ink": "#ffffff"
+      }
+    ],
+    "note": "Cool pale grey holds the page with near-black type and nothing else tinted. Cobalt starts as the button and one highlighted sentence, takes one whole section as a flat field with white text, then returns as a single button block.",
+    "seenIn": [
+      "opl-vessa",
+      "opl-specia1ne",
+      "opl-brikkenco"
+    ]
+  },
+  "photos": null,
+  "motion": {
+    "id": "colour-on-scroll",
+    "name": "Colour by chapter",
+    "description": "Each chapter is its own full-bleed field of one palette colour, so the ground changes exactly at section edges as you scroll, never as a global recolouring of the screen. The only movement: the fixed header (or the one pinned element) takes the ink of the chapter beneath it, switching with a 300ms colour transition as each edge passes under it. Do not drive the page background from an observer: in blind tests a page recoloured mid-section, with a paragraph sitting on two colours, read as broken twice."
+  },
+  "sections": [
+    {
+      "id": "features-small-proof-beside-text",
+      "role": "features",
+      "name": "Small proof beside text",
+      "shape": "list",
+      "tags": [
+        "quiet",
+        "ui-led"
+      ],
+      "directions": [
+        "quiet-instrument",
+        "product-performs",
+        "split-stage",
+        "name-as-monument",
+        "contact-sheet"
+      ],
+      "needs": [],
+      "blueprint": "One narrow module repeated four to six times down the page, never alternating sides. Each module is 640px wide at most and starts on the page's text margin (at about 22% of the viewport on an understated page). Left part: a flat panel 360px wide and 120 to 200px tall, one tone off the ground, radius 8px, holding one small exact demonstration: a cropped interface fragment at true size, or a tightly cropped photograph covering the panel. Right part, 20px away and top-aligned: a heading of one or two lines at 18px medium and two short paragraphs at 15px in the soft ink, in a column 250px wide. Panel heights vary with their content; text always hangs from the panel's top edge. 96–120px of empty ground between modules. The section heading is 24–28px, on the same left edge, 64px above the first module. In a column under 600px the text moves beneath its panel.",
+      "mobile": "Each module stacks: the panel at full width and natural height, then heading and paragraphs 16px below on the same left edge, at 17px and 15px. 64px between modules. Panels keep their true-size contents and crop from the right instead of scaling down.",
+      "seenIn": [
+        "opl-rows"
+      ],
+      "requestedRole": "features"
+    },
+    {
+      "id": "showcase-headline-you-can-type",
+      "role": "showcase",
+      "name": "Headline you can type",
+      "shape": "statement",
+      "tags": [
+        "ui-led",
+        "type-led",
+        "poster"
+      ],
+      "directions": [
+        "sentence-as-layout",
+        "type-only-statement",
+        "product-performs",
+        "loud-flat-poster",
+        "dark-room",
+        "colour-chapters"
+      ],
+      "needs": [],
+      "blueprint": "The section's headline is an input. One line at clamp(48px, 8vw, 132px), tight tracking, flush left across columns 1–12, is a real `<input>` (root marked data-ui) with no border and no fill, prefilled with a believable two-to-five-word example of what a user gives the product: a search, a question, a date in words, a colour name. A solid caret block 0.08em wide blinks after the last character. 48px beneath, on the same left edge, the product's answer appears at true interface size, at most 560px wide: three result rows, one parsed value, or a swatch, updating as the visitor types. Bottom-left, three more examples at 17px act as plain text buttons that refill the line. The rest of the 88svh field is empty. If the text outgrows the line it scrolls inside the input; it never wraps.",
+      "mobile": "The input is set at 11vw on one line and scrolls sideways inside itself when the text runs long. The answer follows 28px below at full width and true size. The three examples become a wrapping row of filled blocks 44px tall beneath the answer; tapping one refills the line.",
+      "seenIn": [
+        "opl-shelf",
+        "opl-tiny-computer-co"
+      ],
+      "requestedRole": "showcase"
+    },
+    {
+      "id": "how-it-works-stages-as-one-bar",
+      "role": "how-it-works",
+      "name": "Stages as one bar",
+      "shape": "band",
+      "tags": [
+        "ui-led",
+        "poster",
+        "type-led"
+      ],
+      "directions": [
+        "loud-flat-poster",
+        "type-only-statement",
+        "colour-chapters",
+        "one-motif",
+        "editorial-report",
+        "dense-tiles",
+        "sentence-as-layout"
+      ],
+      "needs": [],
+      "blueprint": "The product's progress bar, enlarged until it spans the page, is the diagram. One bar runs across columns 1–12, 22vh tall, built as a flex row of three or four solid segments with 6px gaps, root marked data-ui. Each segment's width follows how long that stage really takes (flex-grow from the true durations, 12% minimum), and each is a different flat palette colour, so the reader sees at once that signing up is a sliver and the rest is the product working. Inside every segment, top-left with 20px padding, its duration in words at clamp(20px, 2vw, 30px): 'Two minutes', 'About a day'. Under each segment, on its left edge, one clause at 17px, 22ch wide, beginning with its order word. Above the bar, 64px clear of it, the heading: two to five words at clamp(48px, 6.4vw, 104px), flush left. Nothing else.",
+      "mobile": "The bar turns vertical: segments stack as full-width blocks whose heights keep the proportions, 72px minimum, 6px gaps, about 70svh in total. Each holds its duration at 22px top-left and its clause at 16px beneath. The heading sits above at 11vw on two lines.",
+      "seenIn": [
+        "opl-wild-as"
+      ],
+      "requestedRole": "how-it-works"
+    },
+    {
+      "id": "stats-bars-standing-on-the-edge",
+      "role": "stats",
+      "name": "Bars standing on the edge",
+      "shape": "full-bleed",
+      "tags": [
+        "ui-led",
+        "colour-field"
+      ],
+      "directions": [
+        "editorial-report",
+        "dark-room",
+        "dense-tiles",
+        "colour-chapters",
+        "product-performs"
+      ],
+      "needs": [],
+      "blueprint": "The product's own chart, drawn in HTML, is the whole section. A full-bleed field 90svh tall. Along its bottom edge stand ten to fourteen solid bars, one per true value (months, releases, cohorts), in a CSS grid spanning the full viewport width with 8px gaps and no side margins; heights are the values scaled so the tallest is 58vh. No axes, no grid, no legend; the chart's root is marked data-ui. Every bar is one tone two steps from the field except the one the page is about, which takes the accent. Three bars print their value directly above themselves at clamp(20px, 2vw, 30px), tabular. The headline figure sits top-left on the page margin at clamp(88px, 10vw, 168px), and its claim, two to five words at 28px, sits beneath it on the same margin. Hovering or focusing a bar shows its value and period above it.",
+      "mobile": "Bars run sideways: each a full-width row 28px tall growing from the left edge, 6px gaps, eight values at most. The headline figure sits above at 26vw with its claim at 22px. Three rows print their value at 17px inside the bar's right end. The accent row stays.",
+      "seenIn": [
+        "aww-alethia"
+      ],
+      "requestedRole": "stats"
+    },
+    {
+      "id": "cta-blank-in-the-sentence",
+      "role": "cta",
+      "name": "A sentence with a blank",
+      "shape": "statement",
+      "tags": [
+        "type-led",
+        "ui-led"
+      ],
+      "directions": [
+        "sentence-as-layout",
+        "product-performs",
+        "type-only-statement",
+        "one-motif",
+        "colour-chapters"
+      ],
+      "needs": [],
+      "blueprint": "The closing sentence has a gap in it, and the gap is the form. A sentence of five to eight words is set at about 6vw on two lines, flush left across columns 1–11; there is no separate heading. Where the reader's email (or name, or city) belongs, an `<input>` sits inline on the baseline: a filled block of the one-step tone, exactly one line-height tall and about 7em wide, with the placeholder in the same face and size in the softer ink, no border, and the page's radius or motif corner. The sentence's last word is the submit `<button>`, set in the same type on a block of the accent colour of the same height. Field and button use `em` units so they scale with the sentence. One line at 16px under the sentence, in the softer ink, says what happens after sending. Nothing else is in the section.",
+      "mobile": "The sentence is set at 10vw on two lines; the input drops to a line of its own between them at full width and one line-height tall, and the final word, as the button, ends the second line. The explaining line follows at 15px.",
+      "seenIn": [
+        "opl-shelf"
+      ],
+      "requestedRole": "cta"
+    }
+  ],
+  "references": [
+    {
+      "id": "opl-dialkit",
+      "name": "DialKit",
+      "url": "https://www.dialkit.dev/",
+      "source": "One Page Love",
+      "kind": "dev-tool",
+      "score": 7.9,
+      "idea": "The headline is the demo: three floating dial controls from the product sit on top of the sentence and change its weight, spacing and effects live.",
+      "mood": [
+        "dark",
+        "precise",
+        "tactile",
+        "playful",
+        "minimal"
+      ],
+      "archetype": "type-poster",
+      "hero": "Near-black viewport with no logo and no nav beyond a two-word audience toggle (active white, inactive grey) in 13px at top-left. A three-line sentence, centred, white, about 9vw with leading near 1.0, occupies the middle 60% of the width and sits optically centred. Three dark glass control chips, each roughly 300 by 80px with large-radius corners, a label on a lighter tab and a monospace value, float over the text at different tilts: one above the first line, one overlapping the start of the last line at lower left, one a segmented off/on switch at lower right. The chips blur the letters beneath them. The bottom third is empty.",
+      "type": "Mluvka at weight 450 for the 128px headline (-0.02em) and 16px body; system monospace for control values, code and prompts. Section headings are only ~18px semibold, so the scale is one giant sentence followed by documentation-size type.",
+      "colour": "#111111 #0b0b0b #262626 #ffffff #8a8a8a — Almost pure greyscale: #111 ground, #262626 code panels, white text, grey secondary. Colour arrives only inside demo recordings and syntax highlighting; a faint warm glow rims the control chips.",
+      "imagery": "Screen recordings of interfaces being tuned with the control panel, shown as rounded tiles bent around a 3D cylinder; plus one large embedded demo card pairing a photo stack with its control panel.",
+      "layout": "A full-viewport centred hero and a full-width curved carousel, then everything collapses into one centred ~680px documentation column with left-aligned text: small headings, tab rows, code panels, prompt blocks. It reads like a well-set README.",
+      "sections": [
+        {
+          "role": "gallery",
+          "description": "A band of six or seven screen-recording tiles mapped onto the inside of a wide horizontal cylinder. Tiles in the centre face the viewer at full size; tiles toward the edges shrink, skew in perspective and fade into black, so the row reads as a curved cinema strip about 95% of the viewport wide and 150px tall, floating in empty black with nothing above or below it."
+        },
+        {
+          "role": "showcase",
+          "description": "A single rounded dark card, about 680px wide and 650px tall, split in two. Left: a live demo with a title, a date and two overlapping photographs. Right: a narrow control panel of stacked slider rows, a spring-curve graph and toggles. A text link sits in the card's bottom-left corner. Directly below, a small heading with a tab row of package managers and a one-line code strip."
+        },
+        {
+          "role": "how-it-works",
+          "description": "A docs-style stack in the same narrow column: a small semibold heading, a framework tab row (active white, others grey), one paragraph, then a rounded #262626 code panel with syntax colouring. A list of ready-made prompts follows, each a bold one-line label above a monospace prompt set in its own rounded panel, with about 30px between items."
+        }
+      ],
+      "steal": [
+        "Place the product's real controls on the headline and let them alter the headline's own type settings.",
+        "Reduce navigation to a single audience toggle (human or agent) that swaps the page's content mode.",
+        "Wrap a row of screen recordings around a 3D cylinder so the strip skews and fades at the edges instead of running as a flat marquee."
+      ]
+    },
+    {
+      "id": "aww-alethia",
+      "name": "Alethia",
+      "url": "https://www.alethia.earth/",
+      "source": "Awwwards Site of the Day",
+      "kind": "saas",
+      "score": 7.9,
+      "idea": "Nature as measured data: photoreal moss-covered rocks and terrain float in a dark field, annotated with instrument-style reticles and mono readouts.",
+      "mood": [
+        "scientific",
+        "lush",
+        "precise",
+        "dark",
+        "premium"
+      ],
+      "archetype": "product-object-centre",
+      "hero": "Dark forest-green field. A photoreal 3D boulder covered in moss and small plants floats at centre, about 45% of the viewport wide, with three smaller rocks drifting at lower left, upper right and lower right, the last cropped by the edge. A three-line white headline at about 5vw, medium weight with tight tracking, is flush to a 30px left margin near the top and overlaps the rock's left side. Under it, an outlined button in mono caps with a lime arrow square. A hairline square reticle sits on the rock with a small mono data tag and three lines of readout. Bottom-left: a three-line 24px statement. Bottom-right: a scroll hint.",
+      "type": "Geist Medium for headlines at about 70px with -0.05em tracking; Geist Regular at 24 to 40px for statements, also tight; Geist Mono in bold uppercase for navigation, buttons, tags, bracketed card labels and data readouts at 10 to 14px. The footer wordmark is drawn about 330px tall.",
+      "colour": "#0f1f10 #ffffff #000000 #c6f19d #6d8b3a #9a9d9a — Forest green, black and white sections with a pale lime accent on arrow squares, tags, hotspots and the footer wordmark. Renders stay in moss greens and stone browns under grey fog.",
+      "imagery": "Photoreal CG of mossy rocks, seedlings, soil and a weather-station mast, shown floating on flat colour or as full-bleed foggy macro landscapes; two nature photographs in rounded cards. Hairline reticles, lime hotspots and mono captions are laid over them.",
+      "layout": "30px margins, with text habitually docked in the corners of full-viewport scenes: headline top-left, statement bottom-left or top-right. Full-bleed 3D scenes alternate with a white card section and a black centred statement; the page ends on a full-width wordmark.",
+      "sections": [
+        {
+          "role": "intro",
+          "description": "A full-bleed macro landscape of moss mounds, bare soil and one seedling under grey fog. A five-line statement at about 40px occupies the top-right, from 35% to 84% of the width, with a three-line mono micro-label at the far top-left. Four lime circular markers with a dotted glyph are pinned across the terrain, each followed by a three-line mono caption in white."
+        },
+        {
+          "role": "features",
+          "description": "A full-bleed foggy render of a weather-station mast among rocks and shrubs. Upper left, a three-line heading preceded by a small diagonal arrow. At left, a frosted-glass rounded card about 310px wide holds a small line chart under a large figure. Right of the mast, a stack of five translucent rows about 420px wide, each a mono index number, an uppercase mono label and a plus sign, works as an accordion over the image."
+        },
+        {
+          "role": "showcase",
+          "description": "White section. A lime rectangular mono tag sits above a two-line heading at about 53px, both flush left with the right half empty. Below, two image cards share the full width with a 20px gap and roughly 19px radius: a dewy leaf macro and an aerial of terraced fields. Each carries a bracketed mono label top-left, a lime circular arrow button top-right and a two-line white title over the image at bottom-left."
+        },
+        {
+          "role": "footer",
+          "description": "A blurred dark foliage photograph as background. The wordmark in pale lime spans the full width, letters about 330px tall and touching both margins. Then a hairline, office cities in lime at about 36px on the left and four columns of mono uppercase links on the right; a thin legal row with a back-to-top link at the very bottom."
+        }
+      ],
+      "steal": [
+        "Overlay hairline reticles and mono data tags on an organic 3D object so that measurement becomes the visual subject.",
+        "Dock text in the corners of a full-viewport scene (headline top-left, statement bottom-left, hint bottom-right) and let the object own the centre.",
+        "Confine one pale accent colour to small squares and tags, then spend it once at full scale on a footer wordmark."
+      ]
+    }
+  ],
+  "allowReason": "Radix 官方风为用户指定：violet-9 #6E56CF 是 Radix 品牌色，属于品牌强加的配色约束"
+}

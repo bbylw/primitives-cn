@@ -1,0 +1,210 @@
+---
+import Site from '../layouts/Site.astro';
+import DemoGrid, { HeroDemo } from '../components/DemoGrid';
+import { componentCount, totalParts, byCategory, CATEGORY_LABELS, CATEGORY_ORDER } from '../data/components';
+
+/**
+ * v4 官方风落地页。
+ * 数字与部件名全部来自 radix-ui@1.8.1 的真实导出（scripts/extract-parts.mjs）。
+ */
+
+const cats = CATEGORY_ORDER.map((c) => ({ label: CATEGORY_LABELS[c], n: byCategory(c).length }));
+
+const feats = [
+  {
+    t: '无障碍',
+    body: '遵循 WAI-ARIA 设计模式。role 与 aria-* 属性、焦点锁定与归还、全套键盘导航——这些难做的部分都在内部处理掉了，多数场景直接用。',
+  },
+  {
+    t: '无样式',
+    body: '组件出厂不带任何样式，渲染真实 DOM 把类名留给你。Tailwind、CSS Modules、CSS-in-JS 都能接，样式与状态通过 data-state 对齐。',
+  },
+  {
+    t: '开放组合',
+    body: '组件被拆成具名部件，逐个可包裹——加自己的事件、props 或 ref，不需要 fork 源码。asChild 把 props 合并到你自己的元素上。',
+  },
+  {
+    t: '非受控起步',
+    body: '默认非受控，不写一行 useState 就能跑；需要时加 open 与 onOpenChange 改受控。行为接线全部在内部完成。',
+  },
+];
+---
+
+<Site
+  title="Radix Primitives 中文站 — 无样式、无障碍的 React 底层组件"
+  description="Radix Primitives 的中文介绍与上手文档：无障碍、无样式、开放组合、非受控，附 33 个组件与 162 个部件的真实索引与可操作演示。"
+>
+  <!-- ============ Hero ============ -->
+  <section class="hero">
+    <div class="anim">
+      <span class="kicker">v1.8.1 · {componentCount} 个组件 · MIT</span>
+      <h1>无样式、无障碍的<br />React 底层组件。</h1>
+      <p class="sub">
+        把<b>无障碍行为</b>做进每一个部件：aria 属性、焦点管理、键盘导航都在内部处理。
+        <b>样式完整留给你</b>——组件出厂不带一行 CSS。
+      </p>
+      <div class="hero-cta">
+        <a class="btn lg" href="#install">开始安装</a>
+        <a class="btn outline lg" href="#components">浏览 {componentCount} 个组件</a>
+        <span class="install"><span class="dollar">$</span>npm install radix-ui</span>
+      </div>
+    </div>
+    <HeroDemo client:idle />
+  </section>
+
+  <!-- ============ 组件演示网格 ============ -->
+  <section class="demo-sec" id="components" aria-labelledby="demo-title">
+    <div class="demo-head anim">
+      <h2 id="demo-title" class="h2">八个部件，现在就能按。</h2>
+      <p class="demo-sub">
+        全部是 radix-ui@1.8.1 真实导出的部件，渲染出的 DOM 自带 role 与 aria 属性。
+        更多组件见<a href="/components/">组件索引</a>。
+      </p>
+    </div>
+    <DemoGrid client:idle />
+  </section>
+
+  <!-- ============ 数字条 ============ -->
+  <section class="stats" aria-label="规模">
+    <div class="stat anim"><p class="n nums">{componentCount}</p><p class="l">个稳定组件，取自 radix-ui@1.8.1 公开导出</p></div>
+    <div class="stat anim"><p class="n nums">{totalParts}</p><p class="l">个公开部件，每个都可单独样式化</p></div>
+    <div class="stat anim"><p class="n nums">{cats.length}</p><p class="l">个功能分类，从对话框到状态反馈</p></div>
+    <div class="stat anim"><p class="n">WAI-ARIA</p><p class="l">遵循 W3C 编写实践，开箱即用</p></div>
+  </section>
+
+  <!-- ============ 特性 ============ -->
+  <section class="feats" id="feats" aria-labelledby="feats-title">
+    <h2 id="feats-title" class="sr-only">关键特性</h2>
+    {feats.map((f) => (
+      <div class="feat anim">
+        <h3><i></i>{f.t}</h3>
+        <p>{f.body}</p>
+      </div>
+    ))}
+  </section>
+
+  <!-- ============ 分类速览 ============ -->
+  <section class="cats-sec sec" aria-labelledby="cats-title">
+    <div class="cats-head anim">
+      <h2 id="cats-title" class="h2">按分类速览。</h2>
+      <p class="demo-sub">每一格都是包真实导出的名字。</p>
+    </div>
+    <div class="cats anim">
+      {cats.map((c) => (
+        <a class="cat" href={`/components/#cat-${c.label}`}>
+          <span class="cat-n nums">{c.n}</span>
+          <span class="cat-l">{c.label}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- ============ 代码区 ============ -->
+  <section class="code-sec" aria-labelledby="code-title">
+    <div class="anim">
+      <h2 id="code-title" class="h2">一个对话框，<br />八个部件。</h2>
+      <p class="desc">
+        把 Root 和具名部件拼起来，语义自然成型。<code>Dialog.Content</code> 渲染出的 DOM 自带
+        <code>role="dialog"</code>、焦点锁定与 Esc 关闭——样式挂在你自己的类名上。
+      </p>
+      <a class="btn outline" href="/docs/accessibility/">读文档：无障碍</a>
+    </div>
+    <div class="codeblk anim" data-ui>
+      <div class="bar"><span class="win"><i></i><i></i><i></i></span><b>dialog.tsx</b></div>
+      <pre>
+<span class="kw">import</span> &#123; Dialog &#125; <span class="kw">from</span> <span class="str">"radix-ui"</span>;
+
+<span class="kw">export function</span> <span class="cmp">Example</span>() &#123;
+  <span class="kw">return</span> (
+    &lt;<span class="cmp">Dialog.Root</span>&gt;
+      &lt;<span class="cmp">Dialog.Trigger</span> className=<span class="str">"btn"</span>&gt;打开&lt;/<span class="cmp">Dialog.Trigger</span>&gt;
+      &lt;<span class="cmp">Dialog.Portal</span>&gt;
+        &lt;<span class="cmp">Dialog.Overlay</span> className=<span class="str">"overlay"</span> /&gt;
+        &lt;<span class="cmp">Dialog.Content</span> className=<span class="str">"sheet"</span>&gt;
+          &lt;<span class="cmp">Dialog.Title</span>&gt;标题&lt;/<span class="cmp">Dialog.Title</span>&gt;
+          &lt;<span class="cmp">Dialog.Description</span>&gt;焦点已锁定&lt;/<span class="cmp">Dialog.Description</span>&gt;
+          &lt;<span class="cmp">Dialog.Close</span> className=<span class="str">"btn"</span>&gt;关闭&lt;/<span class="cmp">Dialog.Close</span>&gt;
+        &lt;/<span class="cmp">Dialog.Content</span>&gt;
+      &lt;/<span class="cmp">Dialog.Portal</span>&gt;
+    &lt;/<span class="cmp">Dialog.Root</span>&gt;
+  );
+&#125;</pre>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="cta" id="install">
+    <div>
+      <h2>把无障碍装进项目。</h2>
+      <p>推荐装聚合包 radix-ui：只装一次，import 需要的原语，其余组件会被 tree-shaking 掉。</p>
+    </div>
+    <span class="install"><span class="dollar">$</span>npm install radix-ui</span>
+  </section>
+</Site>
+
+<style>
+  /* ---- Hero ---- */
+  .hero{padding:64px var(--margin) 52px;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,4vw,72px);align-items:center}
+    .hero h1{font-size:var(--s-display);font-weight:600;letter-spacing:-.035em;line-height:1.06;margin-bottom:18px}
+  .sub{font-size:18px;line-height:1.7;color:var(--muted);max-width:46ch;margin-bottom:26px}
+  .sub b{color:var(--ink);font-weight:500}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .install{display:inline-flex;align-items:center;gap:10px;background:var(--code-bg);color:#e6e6ea;border-radius:var(--radius-s);padding:11px 16px;font-family:var(--mono);font-size:13.5px}
+  .install .dollar{color:#8b8f98}
+  .hero-side{display:flex;flex-direction:column;gap:12px}
+  .hero-side-cap{font-size:13px;color:var(--muted);font-weight:500}
+  .dg-read{font-size:12.5px;color:var(--muted)}
+  .dg-hr{height:1px;background:var(--line-soft);margin:16px 0}
+  @media (max-width:900px){.hero{grid-template-columns:1fr;padding-top:44px}}
+
+  /* ---- 演示网格 ---- */
+  .demo-sec{padding:0 var(--margin) 56px}
+  .demo-head{margin-bottom:20px}
+    .demo-sub{font-size:15px;color:var(--muted);margin-top:8px;max-width:60ch}
+  .demo-sub a{color:var(--accent);font-weight:500}
+  .demo-sub a:hover{text-decoration:underline;text-underline-offset:3px}
+  /* ---- 数字条 ---- */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line);margin:0 var(--margin)}
+  .stat{padding:26px 28px;border-left:1px solid var(--line)}
+  .stat:first-child{border-left:0}
+  .stat .n{font-size:clamp(28px,2.6vw,40px);font-weight:600;letter-spacing:-.03em}
+  .stat .l{font-size:13.5px;color:var(--muted);margin-top:4px;max-width:26ch}
+  @media (max-width:900px){.stats{grid-template-columns:1fr 1fr}.stat:nth-child(3){border-left:0;border-top:1px solid var(--line)}.stat:nth-child(4){border-top:1px solid var(--line)}}
+  @media (max-width:560px){.stats{grid-template-columns:1fr}.stat{border-left:0;border-top:1px solid var(--line)}.stat:first-child{border-top:0}}
+
+  /* ---- 特性 ---- */
+  .feats{padding:64px var(--margin);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:44px 56px;max-width:1200px}
+  .feat h3{font-size:17px;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:9px}
+  .feat h3 i{width:8px;height:8px;border-radius:2px;background:var(--accent);flex:none}
+  .feat p{font-size:15px;line-height:1.75;color:var(--muted)}
+  @media (max-width:800px){.feats{grid-template-columns:1fr;gap:28px}}
+
+  /* ---- 分类速览 ---- */
+  .cats-sec{padding:0 var(--margin) 64px}
+  .cats-head{margin-bottom:20px}
+  .cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .cat{border:1px solid var(--line);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:6px;transition:border-color .15s ease,background .15s ease}
+  .cat:hover{border-color:var(--accent);background:var(--accent-soft)}
+  .cat-n{font-size:24px;font-weight:600;letter-spacing:-.02em}
+  .cat-l{font-size:13.5px;color:var(--muted)}
+
+  /* ---- 代码区 ---- */
+  .code-sec{padding:0 var(--margin) 64px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,64px);align-items:center}
+  .code-sec h2{margin-bottom:14px}
+  .desc{font-size:16px;line-height:1.75;color:var(--muted);margin-bottom:20px}
+  .codeblk{background:var(--code-bg);border-radius:12px;overflow:hidden}
+  .codeblk .bar{display:flex;align-items:center;gap:10px;padding:11px 16px;background:#242429}
+  .codeblk .bar b{font-family:var(--mono);font-weight:400;font-size:12px;color:#8b8f98}
+  .codeblk .bar .win{display:flex;gap:6px}
+  .codeblk .bar .win i{width:10px;height:10px;border-radius:50%;background:#3a3a41}
+  .codeblk pre{padding:18px 22px;font-size:13px;line-height:1.8;color:#d6d6dc;overflow:auto}
+  .codeblk .kw{color:#c792ea}.codeblk .cmp{color:#82aaff;font-weight:500}.codeblk .str{color:#c3e88d}.codeblk .cm{color:#8a91a0}.codeblk .tag{color:#f07178}
+  @media (max-width:900px){.code-sec{grid-template-columns:1fr}}
+
+  /* ---- CTA ---- */
+  .cta{margin:0 var(--margin) 64px;background:var(--accent-soft);border-radius:16px;padding:clamp(32px,5vw,64px);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .cta h2{font-size:clamp(24px,2.6vw,34px);font-weight:600;letter-spacing:-.025em;line-height:1.2}
+  .cta p{font-size:15px;color:#4c4470;margin-top:8px;max-width:44ch}
+  .cta .install{background:#fff;color:var(--ink);border:1px solid #e0dcf5}
+  .cta .install .dollar{color:#a49cc9}
+</style>

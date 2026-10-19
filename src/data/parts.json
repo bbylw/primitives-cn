@@ -1,0 +1,367 @@
+{
+  "generatedFrom": "node_modules/@radix-ui/*/dist/index.d.mts (public export statements)",
+  "componentCount": 33,
+  "totalParts": 162,
+  "components": [
+    {
+      "pkg": "@radix-ui/react-accessible-icon",
+      "component": "AccessibleIcon",
+      "parts": [
+        "Root"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-accordion",
+      "component": "Accordion",
+      "parts": [
+        "Content",
+        "Header",
+        "Item",
+        "Root",
+        "Trigger"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-alert-dialog",
+      "component": "AlertDialog",
+      "parts": [
+        "Action",
+        "Cancel",
+        "Content",
+        "Description",
+        "Overlay",
+        "Portal",
+        "Root",
+        "Title",
+        "Trigger"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-aspect-ratio",
+      "component": "AspectRatio",
+      "parts": [
+        "Root"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-avatar",
+      "component": "Avatar",
+      "parts": [
+        "Fallback",
+        "Image",
+        "Root"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-checkbox",
+      "component": "Checkbox",
+      "parts": [
+        "CheckedState",
+        "Indicator",
+        "Root"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-collapsible",
+      "component": "Collapsible",
+      "parts": [
+        "Content",
+        "Root",
+        "Trigger"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-context-menu",
+      "component": "ContextMenu",
+      "parts": [
+        "Arrow",
+        "Content",
+        "Group",
+        "Item",
+        "ItemIndicator",
+        "Label",
+        "Portal",
+        "Root",
+        "Separator",
+        "Sub",
+        "Trigger"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-dialog",
+      "component": "Dialog",
+      "parts": [
+        "Close",
+        "Content",
+        "Description",
+        "Overlay",
+        "Portal",
+        "Root",
+        "Title",
+        "Trigger"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-direction",
+      "component": "Direction",
+      "parts": [
+        "Provider"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-dropdown-menu",
+      "component": "DropdownMenu",
+      "parts": [
+        "Arrow",
+        "Content",
+        "Group",
+        "Item",
+        "ItemIndicator",
+        "Label",
+        "Portal",
+        "Root",
+        "Separator",
+        "Sub",
+        "Trigger"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-form",
+      "component": "Form",
+      "parts": [
+        "Control",
+        "Field",
+        "Label",
+        "Message",
+        "Root",
+        "Submit",
+        "ValidityState"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-hover-card",
+      "component": "HoverCard",
+      "parts": [
+        "Arrow",
+        "Content",
+        "Portal",
+        "Root",
+        "Trigger"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-label",
+      "component": "Label",
+      "parts": [
+        "Root"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-menubar",
+      "component": "Menubar",
+      "parts": [
+        "Arrow",
+        "Content",
+        "Group",
+        "Item",
+        "ItemIndicator",
+        "Label",
+        "Menu",
+        "Portal",
+        "Root",
+        "Separator",
+        "Sub",
+        "Trigger"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-navigation-menu",
+      "component": "NavigationMenu",
+      "parts": [
+        "Content",
+        "Indicator",
+        "Item",
+        "Link",
+        "List",
+        "Root",
+        "Sub",
+        "Trigger",
+        "Viewport"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-popover",
+      "component": "Popover",
+      "parts": [
+        "Anchor",
+        "Arrow",
+        "Close",
+        "Content",
+        "Description",
+        "Portal",
+        "Root",
+        "Title",
+        "Trigger"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-portal",
+      "component": "Portal",
+      "parts": [
+        "Root"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-progress",
+      "component": "Progress",
+      "parts": [
+        "Indicator",
+        "Root"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-radio-group",
+      "component": "RadioGroup",
+      "parts": [
+        "Indicator",
+        "Item",
+        "Root"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-scroll-area",
+      "component": "ScrollArea",
+      "parts": [
+        "Content",
+        "Corner",
+        "Root",
+        "Scrollbar",
+        "Thumb",
+        "Viewport"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-select",
+      "component": "Select",
+      "parts": [
+        "Arrow",
+        "Content",
+        "Group",
+        "Icon",
+        "Item",
+        "ItemIndicator",
+        "ItemText",
+        "Label",
+        "Portal",
+        "Root",
+        "ScrollDownButton",
+        "ScrollUpButton",
+        "Separator",
+        "Trigger",
+        "Value",
+        "Viewport"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-separator",
+      "component": "Separator",
+      "parts": [
+        "Root"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-slider",
+      "component": "Slider",
+      "parts": [
+        "Range",
+        "Root",
+        "Thumb",
+        "Track"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-slot",
+      "component": "Slot",
+      "parts": [
+        "Root"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-switch",
+      "component": "Switch",
+      "parts": [
+        "Root",
+        "Thumb"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-tabs",
+      "component": "Tabs",
+      "parts": [
+        "Content",
+        "List",
+        "Root",
+        "Trigger"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-toast",
+      "component": "Toast",
+      "parts": [
+        "Action",
+        "Close",
+        "Description",
+        "Provider",
+        "Root",
+        "Title",
+        "Viewport"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-toggle",
+      "component": "Toggle",
+      "parts": [
+        "Root"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-toggle-group",
+      "component": "ToggleGroup",
+      "parts": [
+        "Item",
+        "Root"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-toolbar",
+      "component": "Toolbar",
+      "parts": [
+        "Button",
+        "Link",
+        "Root",
+        "Separator",
+        "ToggleGroup",
+        "ToggleItem"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-tooltip",
+      "component": "Tooltip",
+      "parts": [
+        "Arrow",
+        "Content",
+        "Portal",
+        "Provider",
+        "Root",
+        "Trigger"
+      ]
+    },
+    {
+      "pkg": "@radix-ui/react-visually-hidden",
+      "component": "VisuallyHidden",
+      "parts": [
+        "Root"
+      ]
+    }
+  ]
+}

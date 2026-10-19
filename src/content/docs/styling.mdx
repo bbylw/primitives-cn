@@ -1,0 +1,92 @@
+---
+title: 无样式
+description: 组件出厂不带样式，外观完全交给你的样式方案。
+---
+
+import DocDemo from '../../components/DocDemo.astro';
+import FragmentWall from '../../components/FragmentWall.astro';
+import FragmentWallTwo from '../../components/FragmentWallTwo.astro';
+
+# 无样式
+
+组件出厂时不带任何样式，把外观与手感的完整控制权交给你。组件可以用任何样式方案来设置。
+
+## 为什么这样
+
+样式化的组件库通常要求你接受它的设计语言，或者花大量力气去覆盖它的默认值——那些默认值和它的内部实现纠缠在一起，覆盖起来并不省事。
+
+Radix 的组件渲染出真实 DOM，把类名留给你。你选 CSS Modules、Tailwind、CSS-in-JS 还是普通样式表都可以。
+
+## 一个例子
+
+```tsx
+import { Switch } from 'radix-ui';
+
+export function Toggle() {
+  return (
+    <Switch.Root className="switch-root">
+      <Switch.Thumb className="switch-thumb" />
+    </Switch.Root>
+  );
+}
+```
+
+```css
+.switch-root {
+  width: 2.9rem;
+  height: 1.55rem;
+  background: #59574e;
+  border-radius: 999px;
+  position: relative;
+  transition: background-color 240ms;
+}
+.switch-root[data-state='checked'] {
+  background: #4f6238;
+}
+.switch-thumb {
+  display: block;
+  width: 1.15rem;
+  height: 1.15rem;
+  background: #fff;
+  border-radius: 999px;
+  transform: translateX(0.2rem);
+  transition: transform 240ms;
+}
+.switch-root[data-state='checked'] .switch-thumb {
+  transform: translateX(1.35rem);
+}
+```
+
+## 状态属性
+
+每个部件都带着 `data-state`、`data-disabled` 这类属性，它们随状态实时变化。样式应该挂在这些属性上，而不是挂在 JavaScript 里的状态变量上——这样样式和状态就不会各说各话。
+
+
+<DocDemo kind="switch" />
+
+<DocDemo kind="select" />
+
+## 常用样式方案下的样子
+
+同一批组件，换成不同的样式方案。这里列出的每一格都是一个真实运行的组件：
+
+<FragmentWall />
+
+<FragmentWallTwo />
+
+## 为什么这样对设计系统有好处
+
+样式化的组件库会在组件与它的设计语言之间建立强耦合：你想改一处圆角，得去覆盖它内部
+某一层的某个类名；你换了主题变量，组件内部的硬编码颜色不会跟着变。
+
+Radix 把这条链路断在中间。组件输出结构与状态属性的 DOM，样式是一层完全由你写的 CSS。
+这带来三个直接结果：
+
+- 换样式方案不需要改组件代码，类名换成 CSS-in-JS 也不用动组件；
+- 你的设计令牌就是唯一来源，不存在第二套要同步的默认值；
+- 组件升级时，只要公开的部件与状态属性不变，你的样式就不需要跟着改。
+
+这也是「渐进式采用」在工程上的真实含义：你可以一个组件一个组件地换，
+每个换完的组件都立刻获得键盘与焦点行为，而视觉始终是你自己的。
+
+<DocDemo kind="tabs" />

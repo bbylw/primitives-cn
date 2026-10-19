@@ -1,0 +1,34 @@
+---
+import DocDemo from './DocDemo.tsx';
+const { kind } = Astro.props;
+const COPY = {
+  switch: '按空格切换，右边的 aria-checked 会跟着变。',
+  dialog: '打开后焦点被锁在对话框内，按 Esc 关闭。',
+  tabs: '方向键在标签之间移动，aria-selected 标出当前项。',
+  slider: '拖动或用方向键，aria-valuenow 带着当前数值。',
+  select: '打开、浏览、选中，整个流程都能用键盘走完。',
+  toggle: 'roving focus 让整组只占一个 Tab 停靠点。',
+};
+---
+<div class="doc-demo" data-ui>
+  <DocDemo kind={kind} client:load />
+  <p class="doc-demo-hint">{COPY[kind]}</p>
+</div>
+
+<style>
+  .doc-demo {
+    background: var(--surface);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    align-items: flex-start;
+  }
+  .doc-demo-hint {
+    font-size: var(--step-small);
+    color: var(--ink);
+    margin: 0;
+    max-width: 40ch;
+  }
+</style>

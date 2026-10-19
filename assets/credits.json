@@ -1,0 +1,73 @@
+[
+ {
+  "file": "assets/refreshable-braille-display-2010-0123.jpg",
+  "media": "image",
+  "ref": "openverse:e73dcc8c-f3bf-4839-826b-91f8a2830952",
+  "title": "Refreshable Braille display 2010 0123",
+  "creator": "Eddau",
+  "creatorUrl": "https://commons.wikimedia.org/w/index.php?title=User:Eddau&action=edit&redlink=1",
+  "date": null,
+  "license": "CC0",
+  "licenseCode": "cc0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "creditRequired": false,
+  "page": "https://commons.wikimedia.org/w/index.php?curid=10633627",
+  "via": "Wikimedia Commons",
+  "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/Refreshable_Braille_display_2010_0123.JPG/1920px-Refreshable_Braille_display_2010_0123.JPG",
+  "width": 1920,
+  "height": 1440,
+  "bytes": 475913,
+  "credit": "\"Refreshable Braille display 2010 0123\" by Eddau, CC0, via Wikimedia Commons",
+  "notes": [],
+  "saved": "2026-10-19T12:48:42.934Z"
+ },
+ {
+  "file": "assets/blista-braille-typewriter-1.jpg",
+  "media": "image",
+  "ref": "openverse:16d29d09-97ef-41c2-9530-9f1caa69d4a7",
+  "title": "Blista Braille typewriter 1",
+  "creator": "Rémi Kaupp",
+  "creatorUrl": "https://commons.wikimedia.org/wiki/User:Korrigan",
+  "date": null,
+  "license": "CC BY-SA 3.0",
+  "licenseCode": "by-sa",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "creditRequired": true,
+  "page": "https://commons.wikimedia.org/w/index.php?curid=5214119",
+  "via": "Wikimedia Commons",
+  "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Blista_Braille_typewriter_1.jpg/1920px-Blista_Braille_typewriter_1.jpg",
+  "width": 1920,
+  "height": 1280,
+  "bytes": 404048,
+  "credit": "\"Blista Braille typewriter 1\" by Rémi Kaupp, CC BY-SA 3.0, via Wikimedia Commons",
+  "notes": [
+   "Share-alike: an altered version (recoloured, combined with other pictures) must be shared under the same licence."
+  ],
+  "saved": "2026-10-19T12:48:50.860Z"
+ },
+ {
+  "file": "assets/wikimedia-conference-berlin-2010-developer-meeting-8108.jpg",
+  "media": "image",
+  "ref": "commons:10095297",
+  "title": "Wikimedia Conference Berlin 2010 - Developer meeting (8108)",
+  "creator": "Raimond Spekking",
+  "creatorUrl": null,
+  "date": "2010-04-15",
+  "license": "CC BY-SA 4.0",
+  "licenseCode": "by-sa",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "creditRequired": true,
+  "page": "https://commons.wikimedia.org/wiki/File:Wikimedia_Conference_Berlin_2010_-_Developer_meeting_(8108).jpg",
+  "via": "Wikimedia Commons",
+  "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/Wikimedia_Conference_Berlin_2010_-_Developer_meeting_%288108%29.jpg/1920px-Wikimedia_Conference_Berlin_2010_-_Developer_meeting_%288108%29.jpg",
+  "width": 1920,
+  "height": 1714,
+  "bytes": 466843,
+  "credit": "\"Wikimedia Conference Berlin 2010 - Developer meeting (8108)\" by Raimond Spekking, CC BY-SA 4.0, via Wikimedia Commons",
+  "notes": [
+   "Restrictions named on the source page (personality): personality rights, a trademark or similar. Read it before use.",
+   "Share-alike: an altered version (recoloured, combined with other pictures) must be shared under the same licence."
+  ],
+  "saved": "2026-10-19T12:48:51.520Z"
+ }
+]

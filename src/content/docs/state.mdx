@@ -1,0 +1,68 @@
+---
+title: 非受控与受控
+description: 组件默认非受控，也可以改成受控，行为接线全在内部。
+---
+
+import DocDemo from '../../components/DocDemo.astro';
+import FragmentWall from '../../components/FragmentWall.astro';
+import FragmentWallTwo from '../../components/FragmentWallTwo.astro';
+
+# 非受控与受控
+
+适用时，组件默认是非受控的，但也可以改为受控。所有行为接线都在内部完成，因此你可以非常顺畅地跑起来，而不需要先创建一堆本地状态。
+
+## 非受控：不用写状态
+
+最常见的用法只需要一个默认值：
+
+```tsx
+import { Dialog } from 'radix-ui';
+
+<Dialog.Root defaultOpen={false}>
+  <Dialog.Trigger>打开</Dialog.Trigger>
+  <Dialog.Portal>
+    <Dialog.Overlay />
+    <Dialog.Content>
+      <Dialog.Title>标题</Dialog.Title>
+      <Dialog.Close>关闭</Dialog.Close>
+    </Dialog.Content>
+  </Dialog.Portal>
+</Dialog.Root>
+```
+
+开关状态、焦点归还、Esc 处理都在组件内部，你不需要声明任何 `useState`。
+
+## 受控：状态在你手里
+
+需要让外部状态参与时，加上 `open` 与 `onOpenChange`：
+
+```tsx
+const [open, setOpen] = useState(false);
+
+<Dialog.Root open={open} onOpenChange={setOpen}>
+  {/* ... */}
+</Dialog.Root>
+```
+
+两种写法可以混用：`defaultOpen` 给初值，`open` 接管后续。`data-state` 会跟着真实状态变，不受你写法影响。
+
+## 什么时候该受控
+
+值得受控的几种情况：
+
+- 状态要影响别处，比如关闭对话框后刷新列表；
+- 状态要持久化，比如存进 URL 或 localStorage；
+- 多个组件共享同一个开关状态。
+
+单纯想让对话框开起来，用非受控就够了。多写一份状态，就多一处可能不同步的地方。
+
+
+## 这一页涉及到的组件
+
+<FragmentWall />
+
+<FragmentWallTwo />
+
+<DocDemo kind="slider" />
+
+<DocDemo kind="toggle" />

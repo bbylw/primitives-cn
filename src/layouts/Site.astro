@@ -1,0 +1,99 @@
+---
+import Base from './Base.astro';
+import '../styles/playground.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+
+const NAV = [
+  { href: '/docs/introduction/', label: '文档' },
+  { href: '/components/', label: '组件' },
+  { href: '/docs/accessibility/', label: '无障碍' },
+];
+---
+
+<Base title={title} description={description}>
+  <header class="topbar">
+    <div class="topbar-in">
+      <a href="/" class="brand"><span class="mark" aria-hidden="true"></span>Radix Primitives<i>中文站</i></a>
+      <nav aria-label="主导航">
+        <ul class="topnav">
+          {NAV.map((n) => (
+            <li><a href={n.href}>{n.label}</a></li>
+          ))}
+          <li><a class="btn" href="https://github.com/radix-ui/primitives">GitHub</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <slot />
+  </main>
+
+  <footer class="foot">
+    <div class="foot-in">
+      <div class="foot-about">
+        <b>Radix Primitives 中文站</b>
+        <p>
+          内容译自英文官方文档；组件与部件清单由已安装的 radix-ui@1.8.1 包的真实导出生成，可重复抽取。
+          上游 MIT 许可证，版权归 WorkOS。
+        </p>
+      </div>
+      <div>
+        <b>文档</b>
+        <ul>
+          <li><a href="/docs/introduction/">概述</a></li>
+          <li><a href="/docs/accessibility/">无障碍</a></li>
+          <li><a href="/docs/installation/">安装</a></li>
+        </ul>
+      </div>
+      <div>
+        <b>组件</b>
+        <ul>
+          <li><a href="/components/">组件索引</a></li>
+          <li><a href="/components/">可试玩列表</a></li>
+        </ul>
+      </div>
+      <div>
+        <b>社区</b>
+        <ul>
+          <li><a href="https://github.com/radix-ui/primitives">GitHub</a></li>
+          <li><a href="https://discord.com/invite/7Xb99uG">Discord</a></li>
+          <li><a href="https://bsky.app/profile/radix-ui.com">Bluesky</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</Base>
+
+<style>
+  .topbar{position:sticky;top:0;z-index:50;height:60px;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  .topbar-in{height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 var(--margin)}
+  .brand{font-weight:600;font-size:15px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+  .brand:hover{color:var(--ink)}
+  .brand .mark{width:22px;height:22px;border-radius:6px;background:var(--accent);position:relative;flex:none}
+  .brand .mark::after{content:"";position:absolute;inset:6px 7px;border-left:2.5px solid #fff;border-bottom:2.5px solid #fff;transform:rotate(-45deg) translate(0,-1px)}
+  .brand i{font-style:normal;color:var(--muted);font-size:13px;font-weight:400}
+  .topnav{display:flex;align-items:center;gap:6px}
+  .topnav a{font-size:14px;font-weight:500;color:var(--muted);padding:7px 12px;border-radius:var(--radius-s);transition:background .15s ease,color .15s ease}
+  .topnav a:hover{color:var(--ink);background:var(--panel)}
+  .topnav a.btn{color:#fff}
+  .topnav a.btn:hover{color:#fff;background:var(--accent-strong)}
+
+  .foot{border-top:1px solid var(--line);margin-top:64px}
+  .foot-in{padding:44px var(--margin) 56px;display:grid;grid-template-columns:minmax(0,2fr) repeat(3,minmax(0,1fr));gap:32px}
+  .foot b{font-weight:600;font-size:14px;display:block;margin-bottom:12px}
+  .foot ul{display:flex;flex-direction:column;gap:9px}
+  .foot a{font-size:14px;color:var(--muted);transition:color .15s ease}
+  .foot a:hover{color:var(--accent)}
+  .foot-about{font-size:13.5px;color:var(--muted);line-height:1.7;max-width:38ch}
+  .foot-about b{color:var(--ink)}
+  .foot-about p{margin-top:10px}
+  @media (max-width:800px){.foot-in{grid-template-columns:1fr 1fr}}
+  @media (max-width:560px){.foot-in{grid-template-columns:1fr}}
+</style>

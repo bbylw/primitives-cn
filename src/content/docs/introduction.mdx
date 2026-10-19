@@ -1,0 +1,77 @@
+---
+title: 概述
+description: Radix Primitives 是什么，以及它要解决的问题。
+---
+
+import DocDemo from '../../components/DocDemo.astro';
+import FragmentWall from '../../components/FragmentWall.astro';
+import FragmentWallTwo from '../../components/FragmentWallTwo.astro';
+
+# 概述
+
+**Radix Primitives** 是一套底层 UI 组件库，重点关注无障碍性、可定制性与开发者体验。你可以把它当作设计系统的基础层，也可以按需逐步采用。
+
+## 它想解决什么
+
+我们中的大多数人对常见 UI 模式——手风琴、复选框、组合框、对话框、下拉菜单、选择器、滑块、文字提示——共享着差不多的定义。这些 UI 模式由 [WAI-ARIA](https://www.w3.org/TR/wai-aria-practices/#aria_ex) 记录在案，社区也普遍理解它们。
+
+问题出在 Web 平台直接提供的实现上。它们要么根本不存在，要么功能不足，要么无法被充分定制。
+
+于是开发者被迫自己造轮子，这是一项极其困难的任务。结果就是：今天 Web 上的大多数组件都谈不上无障碍、性能不佳，而且缺少关键能力。
+
+我们的目标是做一个资金充足的开源组件库，让社区可以用它搭出无障碍的设计系统。
+
+## 关键的取舍
+
+Radix 不替你做设计决定。它给的是行为，视觉完全交给你：
+
+| 你关心的 | Radix 负责 | 你负责 |
+| --- | --- | --- |
+| 键盘交互 | 方向键、Esc、Tab 的行为 | 无 |
+| 焦点管理 | 焦点锁定与归还 | 无 |
+| ARIA 语义 | `role` 与 `aria-*` 属性 | 无 |
+| 外观 | 无 | 全部 |
+| 组件结构 | 部件的划分 | 组合方式 |
+
+这个取舍是理解 Radix 的关键。如果你在找一个自带视觉风格的开箱即用组件库，Radix 不是；如果你要的是一套能压进自有设计系统的无障碍行为层，它就是。
+
+下面这个开关是真实的 Radix 组件。按一下空格，看看 `aria-checked` 怎么变：
+
+<DocDemo kind="switch" />
+
+## 常见组件的样子
+
+下面这些都是真的，不是截图：
+
+<FragmentWall />
+
+<FragmentWallTwo />
+
+## 它有多少东西
+
+`radix-ui` 聚合包目前导出 33 个稳定组件，合计 162 个公开部件。每个部件都是包真实导出的名字，
+由脚本从各包的 `export` 语句里抽取，而不是从文档里抄的示意。
+
+| 分类 | 组件数 | 代表组件 |
+| --- | --- | --- |
+| 对话框与浮层 | 4 | Dialog、AlertDialog、Popover、HoverCard |
+| 折叠与展开 | 2 | Accordion、Collapsible |
+| 菜单 | 3 | DropdownMenu、ContextMenu、Menubar |
+| 表单控件 | 9 | Checkbox、Switch、Select、Slider、RadioGroup |
+| 导航 | 3 | Tabs、NavigationMenu、Toolbar |
+| 状态反馈 | 3 | Progress、Toast、Tooltip |
+| 布局 | 9 | ScrollArea、Portal、Separator、VisuallyHidden |
+
+完整的 33 个组件与它们的全部部件，见[组件索引](/components/)。
+
+<figure class="doc-fig">
+  <img
+    src="/img/wikimedia-conference-berlin-2010-developer-meeting-8108.jpg"
+    width="1920"
+    height="1714"
+    alt="一位参会者俯身查看面前的盲文点显器，屏幕上显示着会议的内容"
+    loading="lazy"
+    decoding="async"
+  />
+  <figcaption class="small muted">维基媒体 2010 年柏林会议上，参会者在读自己屏幕上的内容。图片：Raimond Spekking，CC BY-SA 4.0。</figcaption>
+</figure>

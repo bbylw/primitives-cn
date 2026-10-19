@@ -1,0 +1,30 @@
+{
+  "name": "radix-primitives-cn",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Radix Primitives 中文文档站 —— 开源无障碍 UI 组件库",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "sync:parts": "node scripts/extract-parts.mjs",
+    "verify:interactions": "node scripts/verify-interactions.mjs",
+    "verify:hydration": "node scripts/verify-hydration.mjs"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^8.1.0",
+    "@astrojs/react": "^7.1.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "astro": "^7.4.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "radix-ui": "^1.8.1",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~6.0.3"
+  }
+}

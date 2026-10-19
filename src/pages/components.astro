@@ -1,0 +1,111 @@
+---
+import Site from '../layouts/Site.astro';
+import Playground, { PLAYGROUND_KEYS } from '../components/Playground';
+import { components, componentCount, totalParts, CATEGORY_LABELS, CATEGORY_ORDER } from '../data/components';
+
+/** 只有能真正试玩的组件才挂上试玩台 */
+const playable = new Set<string>(PLAYGROUND_KEYS);
+
+const grouped = CATEGORY_ORDER.map((cat) => ({
+  cat,
+  label: CATEGORY_LABELS[cat],
+  list: components.filter((c) => c.category === cat),
+})).filter((g) => g.list.length);
+---
+
+<Site
+  title="组件索引 — Radix Primitives 中文"
+  description={`radix-ui@1.8.1 聚合包导出的 ${componentCount} 个稳定组件与 ${totalParts} 个公开部件的真实清单，含可实际操作的试玩。`}
+>
+  <section class="comp-head sec">
+    <span class="kicker anim">radix-ui@1.8.1 · 真实导出</span>
+    <h1 class="comp-title anim">组件索引。</h1>
+    <p class="comp-lead anim">
+      一共 {componentCount} 个稳定组件、{totalParts} 个部件。每一个条目都是这个包真实导出的名字，
+      部件清单由脚本从各包的公开 export 语句中抽取，不是从文档里抄的示意。
+      可试玩的组件右边可以直接操作。
+    </p>
+    <div class="comp-jump anim" role="navigation" aria-label="按分类跳转">
+      {grouped.map((g) => (
+        <a class="jump" href={`#cat-${g.cat}`}>{g.label}<span class="nums">{g.list.length}</span></a>
+      ))}
+    </div>
+  </section>
+
+  {
+    grouped.map((g) => (
+      <section class="comp-cat sec" id={`cat-${g.cat}`} aria-labelledby={`cat-${g.cat}-title`}>
+        <div class="comp-cat-head anim">
+          <h2 id={`cat-${g.cat}-title`} class="h2">{g.label}</h2>
+          <p class="k nums">{g.list.length} 个组件</p>
+        </div>
+
+        <ul class="comp-list">
+          {g.list.map((c) => {
+            const canPlay = playable.has(c.name);
+            return (
+              <li class="comp-row anim" id={c.name}>
+                <div class="comp-id">
+                  <h3 class="comp-name">
+                    {c.name}
+                    {canPlay && <span class="comp-playable">可试玩</span>}
+                  </h3>
+                  <p class="comp-zh">{c.zh}</p>
+                </div>
+
+                <div class="comp-body">
+                  <p class="comp-note">{c.note}</p>
+                  <ul class="comp-parts" aria-label={`${c.name} 的部件`}>
+                    {c.parts.map((p) => (
+                      <li><code>{p}</code></li>
+                    ))}
+                  </ul>
+                  <p class="comp-pkg k"><code>{c.pkg}</code></p>
+                </div>
+
+                {canPlay && (
+                  <div class="comp-demo">
+                    <Playground name={c.name as never} client:idle />
+                  </div>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+    ))
+  }
+</Site>
+
+<style>
+  .comp-head{padding-top:56px;padding-bottom:8px}
+  .kicker{display:inline-flex;background:var(--accent-soft);color:var(--accent);font-size:13px;font-weight:600;padding:5px 12px;border-radius:999px;margin-bottom:18px}
+  .comp-title{font-size:clamp(36px,4.4vw,56px);font-weight:600;letter-spacing:-.035em;line-height:1.05;margin:0 0 16px}
+  .comp-lead{font-size:17px;line-height:1.75;color:var(--muted);max-width:62ch;margin-bottom:22px}
+  .comp-jump{display:flex;gap:8px;flex-wrap:wrap}
+  .jump{font-size:13.5px;font-weight:500;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 13px;display:inline-flex;gap:7px;align-items:center;transition:border-color .15s ease,color .15s ease,background .15s ease}
+  .jump:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+  .jump .nums{font-size:12px;color:var(--soft)}
+  .jump:hover .nums{color:var(--accent)}
+
+  .comp-cat{padding-top:52px}
+  .comp-cat-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+  .comp-list{display:flex;flex-direction:column}
+
+  .comp-row{display:grid;grid-template-columns:minmax(0,14rem) minmax(0,1fr);gap:16px 40px;padding:26px 0;border-top:1px solid var(--line-soft)}
+  .comp-row:first-child{border-top:0;padding-top:8px}
+  .comp-row:target{background:var(--accent-soft);border-radius:10px;padding-inline:16px;margin-inline:-16px}
+  .comp-name{font-size:20px;font-weight:600;letter-spacing:-.015em;display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+  .comp-playable{font-size:12px;font-weight:600;color:var(--accent);background:var(--accent-soft);padding:2px 8px;border-radius:999px}
+  .comp-zh{font-size:13.5px;color:var(--muted);margin-top:4px}
+  .comp-note{font-size:15px;line-height:1.75;color:#3c434e;max-width:52ch}
+  .comp-parts{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;list-style:none;padding:0;min-width:0}
+  .comp-parts code{font-size:12.5px;background:var(--panel);border:1px solid var(--line);color:var(--muted);padding:3px 8px;border-radius:5px;overflow-wrap:anywhere}
+  .comp-pkg{margin-top:10px;min-width:0}
+  .comp-pkg code{background:transparent;border:0;padding:0;color:var(--soft);overflow-wrap:anywhere}
+  .comp-demo{grid-column:2;margin-top:14px}
+  @media (max-width:63.99em){
+    .comp-row{grid-template-columns:1fr}
+    .comp-demo{grid-column:1}
+  }
+</style>

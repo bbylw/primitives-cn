@@ -1,0 +1,182 @@
+---
+import Base from './Base.astro';
+import '../styles/playground.css';
+import { componentCount, totalParts } from '../data/components';
+
+interface Props {
+  title: string;
+  description: string;
+  headings: { depth: number; slug: string; text: string }[];
+}
+
+const { title, description, headings } = Astro.props;
+
+const CHAPTERS = [
+  { href: '/docs/introduction/', label: '概述', group: '总览' },
+  { href: '/docs/accessibility/', label: '无障碍', group: '总览' },
+  { href: '/docs/styling/', label: '无样式', group: '总览' },
+  { href: '/docs/composition/', label: '开放组合', group: '总览' },
+  { href: '/docs/state/', label: '非受控与受控', group: '总览' },
+  { href: '/docs/installation/', label: '安装', group: '总览' },
+  { href: '/components/', label: '组件索引', group: '参考' },
+  { href: '/docs/community/', label: '社区', group: '参考' },
+];
+
+const groups = [...new Set(CHAPTERS.map((c) => c.group))];
+const path = Astro.url.pathname;
+---
+
+<Base title={`${title} — Radix Primitives 中文`} description={description}>
+  <header class="topbar">
+    <div class="topbar-in">
+      <a href="/" class="brand"><span class="mark" aria-hidden="true"></span>Radix Primitives<i>中文站</i></a>
+      <nav aria-label="主导航">
+        <ul class="topnav">
+          <li><a href="/">首页</a></li>
+          <li><a href="/components/">组件索引</a></li>
+          <li><a class="btn" href="https://github.com/radix-ui/primitives">GitHub</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="shell">
+    <aside class="side">
+      <div>
+        {groups.map((g) => (
+          <div>
+            <p class="grp">{g}</p>
+            <nav aria-label={g === '总览' ? '文档章节' : '参考'}>
+              <ul>
+                {CHAPTERS.filter((c) => c.group === g).map((c) => (
+                  <li><a href={c.href} aria-current={path === c.href ? 'page' : undefined} class={path === c.href ? 'on' : ''}>{c.label}</a></li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+        ))}
+      </div>
+      <p class="cnt nums">{componentCount} 个组件 · {totalParts} 个部件</p>
+    </aside>
+
+    <div class="main">
+      <article class="doc-article">
+        <slot />
+      </article>
+
+      <nav class="pager" aria-label="继续阅读">
+        <a href="/components/">
+          <p class="dir">下一站</p>
+          <b>组件索引：{componentCount} 个组件全部可试玩</b>
+        </a>
+        <a href="https://www.radix-ui.com/primitives/docs/overview/introduction" class="next">
+          <p class="dir">英文原版</p>
+          <b>radix-ui.com 官方文档</b>
+        </a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="doc-foot">
+    <p>Radix Primitives 中文站 · <a href="/">返回首页</a></p>
+    <p>内容译自 <a href="https://www.radix-ui.com/primitives/docs/overview/introduction">英文官方文档</a> · MIT License · © WorkOS</p>
+  </div>
+
+  <script>
+    // 文档正文逐块入场：加类后自建 IO（Base 的 IO 只观察先于它存在的 .anim）
+    document.querySelectorAll('.doc-article > *, .side').forEach((el, i) => {
+      el.classList.add('anim');
+      el.style.setProperty('--i', String(Math.min(i, 11)));
+    });
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              e.target.classList.add('in');
+              io.unobserve(e.target);
+            }
+          }
+        },
+        { rootMargin: '0px 0px -6% 0px' },
+      );
+      document.querySelectorAll('.anim:not(.in)').forEach((el) => io.observe(el));
+    } else {
+      document.querySelectorAll('.anim').forEach((el) => el.classList.add('in'));
+    }
+  </script>
+</Base>
+
+<style>
+  .topbar{position:sticky;top:0;z-index:50;height:60px;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  .topbar-in{height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 var(--margin)}
+  .brand{font-weight:600;font-size:15px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+  .brand .mark{width:22px;height:22px;border-radius:6px;background:var(--accent);position:relative;flex:none}
+  .brand .mark::after{content:"";position:absolute;inset:6px 7px;border-left:2.5px solid #fff;border-bottom:2.5px solid #fff;transform:rotate(-45deg) translate(0,-1px)}
+  .brand i{font-style:normal;color:var(--muted);font-size:13px;font-weight:400}
+  .topnav{display:flex;align-items:center;gap:6px}
+  .topnav a{font-size:14px;font-weight:500;color:var(--muted);padding:7px 12px;border-radius:var(--radius-s);transition:background .15s ease,color .15s ease}
+  .topnav a:hover{color:var(--ink);background:var(--panel)}
+  .topnav a.btn{color:#fff}
+  .topnav a.btn:hover{color:#fff;background:var(--accent-strong)}
+
+  .shell{display:grid;grid-template-columns:250px minmax(0,1fr);max-width:1440px;margin:0 auto}
+  .side{border-right:1px solid var(--line);padding:28px 18px 40px;position:sticky;top:60px;height:calc(100vh - 60px);overflow:auto}
+  .grp{font-size:12px;font-weight:600;color:var(--soft);letter-spacing:.02em;margin:22px 0 8px}
+  .grp:first-child{margin-top:0}
+  .side ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:1px}
+  .side li a{display:block;font-size:14px;font-weight:500;color:var(--muted);padding:7px 10px;border-radius:var(--radius-s);transition:background .15s ease,color .15s ease}
+  .side li a:hover{color:var(--ink);background:var(--panel)}
+  .side li a.on{color:var(--accent);background:var(--accent-soft)}
+  .cnt{font-size:13px;color:var(--muted);padding:14px 10px 0;border-top:1px solid var(--line-soft);margin-top:18px}
+
+  .main{padding:44px clamp(24px,4vw,72px) 80px;min-width:0}
+  .pager{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:52px}
+  .pager a{border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;transition:border-color .15s ease,background .15s ease}
+  .pager a:hover{border-color:var(--accent);background:var(--accent-soft)}
+  .pager .dir{font-size:12.5px;color:var(--soft);margin-bottom:5px}
+  .pager b{font-size:15px;font-weight:600}
+  .pager a.next{text-align:right}
+  @media (max-width:639px){.pager{grid-template-columns:1fr}}
+
+  .doc-foot{border-top:1px solid var(--line);padding:30px var(--margin);display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+  .doc-foot p{font-size:13.5px;color:var(--muted)}
+  .doc-foot a{color:var(--ink);font-weight:500}
+  .doc-foot a:hover{color:var(--accent)}
+
+  @media (max-width:900px){
+    .shell{grid-template-columns:1fr}
+    .side{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:16px}
+    .side nav,.grp{display:none}
+    .side .cnt{border-top:0;padding-top:0}
+    .main{padding:28px 20px 60px}
+  }
+</style>
+
+<style is:global>
+  /* ---- 正文排版（官方风） ---- */
+  .doc-article{max-width:760px}
+  .doc-article > .crumb{font-family:var(--mono);font-size:13px;color:var(--muted);margin-bottom:14px}
+  .doc-article > .crumb a{color:var(--muted)}
+  .doc-article > h1{font-size:clamp(34px,4vw,52px);font-weight:600;letter-spacing:-.03em;line-height:1.08;margin-bottom:14px}
+  .doc-article > .lead{font-size:18px;line-height:1.7;color:var(--muted);max-width:56ch;margin-bottom:22px}
+  .doc-article > .doc-actions{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 34px}
+  .doc-article h2{font-size:21px;font-weight:600;letter-spacing:-.015em;margin:38px 0 12px}
+  .doc-article h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+  .doc-article p{font-size:15.5px;line-height:1.85;color:#3c434e;max-width:68ch;margin-bottom:14px}
+  .doc-article p b{color:var(--ink);font-weight:500}
+  .doc-article ul,.doc-article ol{padding-left:1.3rem;margin:0 0 14px;display:flex;flex-direction:column;gap:6px}
+  .doc-article li{font-size:15.5px;line-height:1.8;color:#3c434e}
+  .doc-article a{text-decoration:underline;text-decoration-color:#c9c9cf;text-underline-offset:3px;transition:text-decoration-color .15s ease,color .15s ease}
+  .doc-article a:hover{color:var(--accent);text-decoration-color:var(--accent)}
+  .doc-article table{width:100%;border-collapse:collapse;font-size:14px;margin:16px 0}
+  .doc-article th{font-size:12.5px;color:var(--soft);text-align:left;font-weight:500;padding:9px 14px 9px 0;border-bottom:1px solid var(--line)}
+  .doc-article td{padding:10px 14px 10px 0;border-bottom:1px solid var(--line-soft);line-height:1.6;vertical-align:top;color:#3c434e}
+  .doc-figure{margin:22px 0}
+  .doc-figure img{width:100%;height:auto;border-radius:12px}
+  .doc-figure figcaption{margin-top:10px;font-size:13.5px;color:var(--muted);max-width:52ch}
+  .doc-credits{font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 18px;list-style:none;padding:0}
+  .doc-credits-note{font-size:13px;color:var(--muted);margin-top:4px}
+  .doc-next{margin-top:32px;background:var(--accent-soft);border-radius:12px;padding:22px 24px} /* fs-ignore 品牌色浅底 */
+  .doc-next p{font-size:14px;color:#3f3a63;margin-bottom:12px;max-width:52ch}
+</style>
