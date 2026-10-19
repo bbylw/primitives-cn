@@ -1,7 +1,14 @@
 ---
 import DocDemo from './DocDemo.tsx';
+
+type Kind = 'switch' | 'dialog' | 'tabs' | 'slider' | 'select' | 'toggle';
+
+interface Props {
+  kind: Kind;
+}
+
 const { kind } = Astro.props;
-const COPY = {
+const COPY: Record<Kind, string> = {
   switch: '按空格切换，右边的 aria-checked 会跟着变。',
   dialog: '打开后焦点被锁在对话框内，按 Esc 关闭。',
   tabs: '方向键在标签之间移动，aria-selected 标出当前项。',
@@ -17,7 +24,7 @@ const COPY = {
 
 <style>
   .doc-demo {
-    background: var(--surface);
+    background: var(--panel);
     padding: 1.5rem;
     margin: 1.5rem 0;
     display: flex;
@@ -26,7 +33,7 @@ const COPY = {
     align-items: flex-start;
   }
   .doc-demo-hint {
-    font-size: var(--step-small);
+    font-size: var(--s-small);
     color: var(--ink);
     margin: 0;
     max-width: 40ch;

@@ -7,15 +7,6 @@ import { Dialog, Select, Slider, Switch, Tabs, ToggleGroup } from 'radix-ui';
 
 type Kind = 'switch' | 'dialog' | 'tabs' | 'slider' | 'select' | 'toggle';
 
-const COPY: Record<Kind, { label: string; hint: string }> = {
-  switch: { label: 'Switch', hint: '按空格切换，读数里的 aria-checked 会跟着变。' },
-  dialog: { label: 'Dialog', hint: '打开后焦点被锁在里面，按 Esc 关闭。' },
-  tabs: { label: 'Tabs', hint: '方向键在标签间移动，aria-selected 标出当前项。' },
-  slider: { label: 'Slider', hint: '拖动或用方向键，aria-valuenow 带着当前数值。' },
-  select: { label: 'Select', hint: '整个流程都能用键盘走完。' },
-  toggle: { label: 'ToggleGroup', hint: 'roving focus 让整组只占一个 Tab 停靠点。' },
-};
-
 export default function DocDemo({ kind }: { kind: Kind }) {
   const [checked, setChecked] = useState(true);
 
@@ -109,12 +100,11 @@ function SliderDemo() {
         onValueChange={setValue}
         max={100}
         className="px-slider"
-        aria-label="示例数值"
       >
         <Slider.Track className="px-slider-track">
           <Slider.Range className="px-slider-range" />
         </Slider.Track>
-        <Slider.Thumb className="px-slider-thumb" />
+        <Slider.Thumb className="px-slider-thumb" aria-label="示例数值" />
       </Slider.Root>
       <code>aria-valuenow={value[0]}</code>
     </div>

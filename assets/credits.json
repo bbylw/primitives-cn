@@ -1,6 +1,6 @@
 [
  {
-  "file": "assets/refreshable-braille-display-2010-0123.jpg",
+  "file": "public/img/refreshable-braille-display-2010-0123.jpg",
   "media": "image",
   "ref": "openverse:e73dcc8c-f3bf-4839-826b-91f8a2830952",
   "title": "Refreshable Braille display 2010 0123",
@@ -22,7 +22,7 @@
   "saved": "2026-10-19T12:48:42.934Z"
  },
  {
-  "file": "assets/blista-braille-typewriter-1.jpg",
+  "file": "public/img/blista-braille-typewriter-1.jpg",
   "media": "image",
   "ref": "openverse:16d29d09-97ef-41c2-9530-9f1caa69d4a7",
   "title": "Blista Braille typewriter 1",
@@ -46,7 +46,7 @@
   "saved": "2026-10-19T12:48:50.860Z"
  },
  {
-  "file": "assets/wikimedia-conference-berlin-2010-developer-meeting-8108.jpg",
+  "file": "public/img/wikimedia-conference-berlin-2010-developer-meeting-8108.jpg",
   "media": "image",
   "ref": "commons:10095297",
   "title": "Wikimedia Conference Berlin 2010 - Developer meeting (8108)",

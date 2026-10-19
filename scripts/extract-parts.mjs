@@ -32,9 +32,10 @@ function publicExports(dtsPath) {
     if (!/^\s*export\s*\{/.test(line)) continue;
     const inner = line.slice(line.indexOf('{') + 1, line.lastIndexOf('}'));
     for (const seg of inner.split(',')) {
-      const t = seg.trim().replace(/^type\s+/, '');
-      if (!t) continue;
-      const parts = t.split(/\s+as\s+/);
+      const raw = seg.trim();
+      // `export { type CheckedState, Root }` 里的类型导出不是可渲染部件
+      if (!raw || /^type\s+/.test(raw)) continue;
+      const parts = raw.split(/\s+as\s+/);
       const name = (parts[1] ?? parts[0]).trim();
       if (name && /^[A-Z]/.test(name)) names.add(name);
     }

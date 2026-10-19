@@ -65,7 +65,7 @@ const grouped = CATEGORY_ORDER.map((cat) => ({
 
                 {canPlay && (
                   <div class="comp-demo">
-                    <Playground name={c.name as never} client:idle />
+                    <Playground name={c.name} client:idle />
                   </div>
                 )}
               </li>

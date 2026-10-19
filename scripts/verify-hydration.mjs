@@ -2,9 +2,9 @@
  * 全站水合检查：确认每个页面的 React island 都真的接管了 DOM。
  * 未水合的 island 意味着页面上的组件是死的。
  */
-import { Browser, sleep } from 'file:///C:/Users/bbylw/.workbuddy/skills/frontend-studio/scripts/lib/cdp.mjs';
+import { Browser, sleep } from './lib/cdp.mjs';
 
-const base = process.argv[2] || 'http://localhost:4399';
+const base = process.argv[2] || process.env.BASE_URL || 'http://localhost:4321';
 const pages = [
   '/',
   '/components/',

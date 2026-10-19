@@ -1,15 +1,15 @@
 ---
 import Base from './Base.astro';
+import Topbar from '../components/Topbar.astro';
 import '../styles/playground.css';
 import { componentCount, totalParts } from '../data/components';
 
 interface Props {
   title: string;
   description: string;
-  headings: { depth: number; slug: string; text: string }[];
 }
 
-const { title, description, headings } = Astro.props;
+const { title, description } = Astro.props;
 
 const CHAPTERS = [
   { href: '/docs/introduction/', label: '概述', group: '总览' },
@@ -24,25 +24,31 @@ const CHAPTERS = [
 
 const groups = [...new Set(CHAPTERS.map((c) => c.group))];
 const path = Astro.url.pathname;
+const currentChapter = CHAPTERS.find((c) => c.href === path)?.label;
 ---
 
 <Base title={`${title} — Radix Primitives 中文`} description={description}>
-  <header class="topbar">
-    <div class="topbar-in">
-      <a href="/" class="brand"><span class="mark" aria-hidden="true"></span>Radix Primitives<i>中文站</i></a>
-      <nav aria-label="主导航">
-        <ul class="topnav">
-          <li><a href="/">首页</a></li>
-          <li><a href="/components/">组件索引</a></li>
-          <li><a class="btn" href="https://github.com/radix-ui/primitives">GitHub</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <Topbar />
 
   <div class="shell">
     <aside class="side">
-      <div>
+      <details class="doc-menu">
+        <summary>文档目录{currentChapter ? ` · ${currentChapter}` : ''}<span class="chev" aria-hidden="true"></span></summary>
+        {groups.map((g) => (
+          <div>
+            <p class="grp">{g}</p>
+            <nav aria-label={g === '总览' ? '文档章节' : '参考'}>
+              <ul>
+                {CHAPTERS.filter((c) => c.group === g).map((c) => (
+                  <li><a href={c.href} aria-current={path === c.href ? 'page' : undefined} class={path === c.href ? 'on' : ''}>{c.label}</a></li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+        ))}
+      </details>
+
+      <div class="side-groups">
         {groups.map((g) => (
           <div>
             <p class="grp">{g}</p>
@@ -59,7 +65,7 @@ const path = Astro.url.pathname;
       <p class="cnt nums">{componentCount} 个组件 · {totalParts} 个部件</p>
     </aside>
 
-    <div class="main">
+    <main class="main" id="main" tabindex="-1">
       <article class="doc-article">
         <slot />
       </article>
@@ -67,24 +73,24 @@ const path = Astro.url.pathname;
       <nav class="pager" aria-label="继续阅读">
         <a href="/components/">
           <p class="dir">下一站</p>
-          <b>组件索引：{componentCount} 个组件全部可试玩</b>
+          <b>组件索引：{componentCount} 个组件与 {totalParts} 个部件</b>
         </a>
         <a href="https://www.radix-ui.com/primitives/docs/overview/introduction" class="next">
           <p class="dir">英文原版</p>
           <b>radix-ui.com 官方文档</b>
         </a>
       </nav>
-    </div>
+    </main>
   </div>
 
-  <div class="doc-foot">
+  <footer class="doc-foot">
     <p>Radix Primitives 中文站 · <a href="/">返回首页</a></p>
     <p>内容译自 <a href="https://www.radix-ui.com/primitives/docs/overview/introduction">英文官方文档</a> · MIT License · © WorkOS</p>
-  </div>
+  </footer>
 
   <script>
     // 文档正文逐块入场：加类后自建 IO（Base 的 IO 只观察先于它存在的 .anim）
-    document.querySelectorAll('.doc-article > *, .side').forEach((el, i) => {
+    document.querySelectorAll<HTMLElement>('.doc-article > *, .side').forEach((el, i) => {
       el.classList.add('anim');
       el.style.setProperty('--i', String(Math.min(i, 11)));
     });
@@ -108,18 +114,6 @@ const path = Astro.url.pathname;
 </Base>
 
 <style>
-  .topbar{position:sticky;top:0;z-index:50;height:60px;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
-  .topbar-in{height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 var(--margin)}
-  .brand{font-weight:600;font-size:15px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
-  .brand .mark{width:22px;height:22px;border-radius:6px;background:var(--accent);position:relative;flex:none}
-  .brand .mark::after{content:"";position:absolute;inset:6px 7px;border-left:2.5px solid #fff;border-bottom:2.5px solid #fff;transform:rotate(-45deg) translate(0,-1px)}
-  .brand i{font-style:normal;color:var(--muted);font-size:13px;font-weight:400}
-  .topnav{display:flex;align-items:center;gap:6px}
-  .topnav a{font-size:14px;font-weight:500;color:var(--muted);padding:7px 12px;border-radius:var(--radius-s);transition:background .15s ease,color .15s ease}
-  .topnav a:hover{color:var(--ink);background:var(--panel)}
-  .topnav a.btn{color:#fff}
-  .topnav a.btn:hover{color:#fff;background:var(--accent-strong)}
-
   .shell{display:grid;grid-template-columns:250px minmax(0,1fr);max-width:1440px;margin:0 auto}
   .side{border-right:1px solid var(--line);padding:28px 18px 40px;position:sticky;top:60px;height:calc(100vh - 60px);overflow:auto}
   .grp{font-size:12px;font-weight:600;color:var(--soft);letter-spacing:.02em;margin:22px 0 8px}
@@ -129,6 +123,11 @@ const path = Astro.url.pathname;
   .side li a:hover{color:var(--ink);background:var(--panel)}
   .side li a.on{color:var(--accent);background:var(--accent-soft)}
   .cnt{font-size:13px;color:var(--muted);padding:14px 10px 0;border-top:1px solid var(--line-soft);margin-top:18px}
+  .doc-menu{display:none}
+  .doc-menu summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:14px;font-weight:600;cursor:pointer;padding:4px 2px}
+  .doc-menu summary::-webkit-details-marker{display:none}
+  .doc-menu .chev{width:8px;height:8px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:translateY(-2px) rotate(45deg);flex:none;transition:transform .15s ease}
+  .doc-menu[open] .chev{transform:translateY(1px) rotate(225deg)}
 
   .main{padding:44px clamp(24px,4vw,72px) 80px;min-width:0}
   .pager{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:52px}
@@ -146,9 +145,11 @@ const path = Astro.url.pathname;
 
   @media (max-width:900px){
     .shell{grid-template-columns:1fr}
-    .side{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:16px}
-    .side nav,.grp{display:none}
-    .side .cnt{border-top:0;padding-top:0}
+    .side{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:16px 20px}
+    .side-groups{display:none}
+    .doc-menu{display:block}
+    .doc-menu .grp{margin-top:16px}
+    .side .cnt{border-top:0;padding:12px 2px 0;margin-top:12px}
     .main{padding:28px 20px 60px}
   }
 </style>
@@ -175,8 +176,4 @@ const path = Astro.url.pathname;
   .doc-figure{margin:22px 0}
   .doc-figure img{width:100%;height:auto;border-radius:12px}
   .doc-figure figcaption{margin-top:10px;font-size:13.5px;color:var(--muted);max-width:52ch}
-  .doc-credits{font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 18px;list-style:none;padding:0}
-  .doc-credits-note{font-size:13px;color:var(--muted);margin-top:4px}
-  .doc-next{margin-top:32px;background:var(--accent-soft);border-radius:12px;padding:22px 24px} /* fs-ignore 品牌色浅底 */
-  .doc-next p{font-size:14px;color:#3f3a63;margin-bottom:12px;max-width:52ch}
 </style>

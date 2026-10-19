@@ -1,0 +1,224 @@
+---
+const path = Astro.url.pathname;
+
+const NAV = [
+  { href: '/docs/introduction/', label: '文档', active: path.startsWith('/docs/') },
+  { href: '/components/', label: '组件', active: path.startsWith('/components/') },
+  { href: '/docs/accessibility/', label: '无障碍', active: path === '/docs/accessibility/' },
+];
+---
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a href="/" class="brand">
+      <span class="mark" aria-hidden="true"></span>
+      <span class="brand-name">Radix Primitives</span>
+      <i>中文站</i>
+    </a>
+
+    <nav class="desk" aria-label="主导航">
+      <ul class="topnav">
+        {NAV.map((n) => (
+          <li>
+            <a href={n.href} aria-current={n.active ? 'page' : undefined} class={n.active ? 'on' : ''}>{n.label}</a>
+          </li>
+        ))}
+        <li><a class="btn" href="https://github.com/radix-ui/primitives">GitHub</a></li>
+      </ul>
+    </nav>
+
+    <details class="menu">
+      <summary>菜单<span class="chev" aria-hidden="true"></span></summary>
+      <nav aria-label="移动端导航">
+        <ul>
+          {NAV.map((n) => (
+            <li>
+              <a href={n.href} aria-current={n.active ? 'page' : undefined} class={n.active ? 'on' : ''}>{n.label}</a>
+            </li>
+          ))}
+          <li><a href="https://github.com/radix-ui/primitives">GitHub</a></li>
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<script>
+  document.querySelectorAll<HTMLDetailsElement>('details.menu').forEach((menu) => {
+    document.addEventListener('click', (e) => {
+      if (menu.open && !menu.contains(e.target as Node)) menu.open = false;
+    });
+    menu.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        menu.open = false;
+        menu.querySelector<HTMLElement>('summary')?.focus();
+      }
+    });
+  });
+</script>
+
+<style>
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar-in {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 0 var(--margin);
+  }
+  .brand {
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    min-width: 0;
+  }
+  .brand:hover {
+    color: var(--ink);
+  }
+  .brand .mark {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    background: var(--accent);
+    position: relative;
+    flex: none;
+  }
+  .brand .mark::after {
+    content: "";
+    position: absolute;
+    inset: 6px 7px;
+    border-left: 2.5px solid #fff;
+    border-bottom: 2.5px solid #fff;
+    transform: rotate(-45deg) translate(0, -1px);
+  }
+  .brand i {
+    font-style: normal;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 400;
+  }
+  .brand-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .topnav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .topnav a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+    padding: 7px 12px;
+    border-radius: var(--radius-s);
+    white-space: nowrap;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .topnav a:hover,
+  .topnav a.on {
+    color: var(--ink);
+    background: var(--panel);
+  }
+  .topnav a.btn {
+    color: #fff;
+    background: var(--accent);
+  }
+  .topnav a.btn:hover {
+    color: #fff;
+    background: var(--accent-strong);
+  }
+
+  .menu {
+    display: none;
+    position: relative;
+  }
+  .menu summary {
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 36px;
+    padding: 0 13px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-s);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+  }
+  .menu summary::-webkit-details-marker {
+    display: none;
+  }
+  .menu summary:hover {
+    background: var(--panel);
+  }
+  .chev {
+    width: 7px;
+    height: 7px;
+    border-right: 1.5px solid var(--muted);
+    border-bottom: 1.5px solid var(--muted);
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform 0.15s ease;
+  }
+  .menu[open] .chev {
+    transform: translateY(1px) rotate(225deg);
+  }
+  .menu nav {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 12px);
+    min-width: 180px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: 0 16px 44px rgba(11, 11, 15, 0.14);
+    padding: 6px;
+  }
+  .menu ul {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .menu a {
+    display: block;
+    padding: 9px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+  }
+  .menu a:hover,
+  .menu a.on {
+    background: var(--panel);
+    color: var(--ink);
+  }
+
+  @media (max-width: 760px) {
+    .desk {
+      display: none;
+    }
+    .menu {
+      display: block;
+    }
+  }
+  @media (max-width: 400px) {
+    .brand i {
+      display: none;
+    }
+  }
+</style>

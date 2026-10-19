@@ -1,7 +1,7 @@
 {
   "generatedFrom": "node_modules/@radix-ui/*/dist/index.d.mts (public export statements)",
   "componentCount": 33,
-  "totalParts": 162,
+  "totalParts": 161,
   "components": [
     {
       "pkg": "@radix-ui/react-accessible-icon",
@@ -56,7 +56,6 @@
       "pkg": "@radix-ui/react-checkbox",
       "component": "Checkbox",
       "parts": [
-        "CheckedState",
         "Indicator",
         "Root"
       ]

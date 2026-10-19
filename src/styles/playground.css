@@ -165,47 +165,22 @@
 /* ---------- Select 勾与箭头（SVG 尺寸） ---------- */
 .px-select-check svg,.px-select-icon svg{display:block}
 
-/* ==========================================================================
-   A11yBench · 无障碍解剖台（官方风）
-   ========================================================================== */
-.a11y-bench{width:100%}
-.a11y-bench-controls{display:flex;gap:2px;background:var(--panel);padding:3px;border-radius:var(--radius-s);width:fit-content;margin-bottom:20px}
-.a11y-bench-tab{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;background:transparent;color:var(--muted);font-size:13.5px;font-weight:500;border-radius:5px;cursor:pointer;transition:background .15s ease,color .15s ease,border-color .15s ease;border:1px solid transparent}
-.a11y-bench-tab:hover{color:var(--ink)}
-.a11y-bench-tab[aria-selected='true']{background:#fff;color:var(--ink);border-color:var(--line)}
-.a11y-bench-tab-en{font-family:var(--mono);font-size:12px;color:var(--soft)}
-.a11y-bench-tab[aria-selected='true'] .a11y-bench-tab-en{color:var(--accent)}
-.a11y-bench-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:stretch}
-@media (max-width:63.99em){.a11y-bench-body{grid-template-columns:minmax(0,1fr)}}
-.a11y-bench-surface{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:24px;min-height:15rem;display:flex;flex-direction:column;gap:16px}
-@media (max-width:47.99em){.a11y-bench-surface{padding:18px;min-height:12rem}}
-.a11y-bench-hint{font-size:13.5px;color:var(--muted);margin-top:auto;line-height:1.65;max-width:36ch}
-.a11y-bench-read{background:#fff;border:1px solid var(--line);border-radius:10px;padding:24px;min-height:15rem}
-@media (max-width:47.99em){.a11y-bench-read{padding:18px;min-height:0}}
-.a11y-bench-read-title{font-size:13.5px;color:var(--muted);margin-bottom:14px;line-height:1.5;font-family:var(--mono)}
-.a11y-bench-read-hint{font-size:13px;color:var(--soft);margin-bottom:10px}
-.a11y-bench-empty{font-size:13.5px;color:var(--muted)}
-.a11y-attrs{display:flex;flex-direction:column;margin:0}
-.a11y-attr{display:grid;grid-template-columns:minmax(0,10rem) minmax(0,1fr);gap:14px;padding:8px 0;align-items:baseline;border-bottom:1px solid var(--line-soft)}
-.a11y-attr:last-child{border-bottom:0}
-.a11y-attr dt{font-size:13px;color:var(--muted)}
-.a11y-attr dt code{background:transparent;padding:0;color:var(--accent-strong)}
-.a11y-attr dd{margin:0;font-size:13px}
-.a11y-attr dd code{background:transparent;padding:0;color:var(--ink)}
+/* ---------- 文档页片段墙（React island 内部） ---------- */
+.fragments{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:1px;background:var(--bg);margin:2rem 0 0}
+.fragments + .fragments{margin-top:1px}
+.fragments:last-child{margin-bottom:2rem}
+.fragment{background:var(--panel);padding:1.1rem;display:flex;flex-direction:column;gap:.9rem}
+.fragment-wide{grid-column:span 2}
+.fragment-label{font-size:var(--s-small);color:var(--muted);margin:0}
+.fragment-body{display:flex;align-items:center;min-height:3rem}
+.fragment-body > *{width:100%}
+@media (max-width:47.99em){.fragment-wide{grid-column:span 1}}
 
-/* A11yBench 内部件（复用 .px 皮肤） */
-.a11y-tabs-list{display:flex;gap:2px;background:var(--panel);padding:3px;border-radius:var(--radius-s);width:100%}
-.a11y-tab{background:transparent;padding:7px 12px;border-radius:5px;font-size:13.5px;font-weight:500;color:var(--muted);cursor:pointer}
-.a11y-tab[data-state='active']{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08),0 0 0 1px var(--line)}
-.a11y-tabpanel{padding:10px 2px 0;font-size:14px;color:var(--muted)}
+/* ---------- DocDemo / FragmentWall 里的开关皮肤 ---------- */
 .a11y-switch{width:42px;height:24px;background:#d7d7dc;border-radius:999px;position:relative;cursor:pointer;flex:none;transition:background .18s var(--ease)}
 .a11y-switch[data-state='checked']{background:var(--accent)}
 .a11y-switch-thumb{display:block;width:18px;height:18px;background:#fff;border-radius:999px;box-shadow:0 1px 2px rgba(0,0,0,.2);transform:translateX(3px);transition:transform .18s var(--ease)}
 .a11y-switch[data-state='checked'] .a11y-switch-thumb{transform:translateX(21px)}
-.a11y-slider{position:relative;display:flex;align-items:center;width:min(18rem,100%);height:20px;user-select:none;touch-action:none}
-.a11y-slider-track{position:relative;background:#d7d7dc;flex-grow:1;height:5px;border-radius:3px}
-.a11y-slider-range{position:absolute;background:var(--accent);height:100%;border-radius:3px}
-.a11y-slider-thumb{display:block;width:16px;height:16px;background:#fff;border-radius:999px;box-shadow:0 1px 3px rgba(0,0,0,.25),0 0 0 1px rgba(0,0,0,.06);cursor:grab}
 /* ==========================================================================
    DemoGrid / HeroDemo（React island 内部 DOM 不带 Astro cid，样式必须全局）
    ========================================================================== */

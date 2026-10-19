@@ -226,11 +226,11 @@ const DEMOS = {
     parts: ['Root', 'Track', 'Range', 'Thumb'],
     node: (
       <div className="px-slider-wrap">
-        <Slider.Root defaultValue={[45]} max={100} step={5} className="px-slider" aria-label="对比度">
+        <Slider.Root defaultValue={[45]} max={100} step={5} className="px-slider">
           <Slider.Track className="px-slider-track">
             <Slider.Range className="px-slider-range" />
           </Slider.Track>
-          <Slider.Thumb className="px-slider-thumb" />
+          <Slider.Thumb className="px-slider-thumb" aria-label="对比度" />
         </Slider.Root>
       </div>
     ),
@@ -241,15 +241,15 @@ const DEMOS = {
     node: (
       <RadioGroup.Root defaultValue="md" className="px-radiogroup" aria-label="尺寸">
         <div className="px-radio-item">
-          <RadioGroup.Item value="sm" className="px-radio"><RadioGroup.Indicator className="px-radio-dot" /></RadioGroup.Item>
+          <RadioGroup.Item id="px-radio-sm" value="sm" className="px-radio"><RadioGroup.Indicator className="px-radio-dot" /></RadioGroup.Item>
           <label htmlFor="px-radio-sm">小</label>
         </div>
         <div className="px-radio-item">
-          <RadioGroup.Item id="px-radio-sm" value="md" className="px-radio"><RadioGroup.Indicator className="px-radio-dot" /></RadioGroup.Item>
+          <RadioGroup.Item id="px-radio-md" value="md" className="px-radio"><RadioGroup.Indicator className="px-radio-dot" /></RadioGroup.Item>
           <label htmlFor="px-radio-md">中</label>
         </div>
         <div className="px-radio-item">
-          <RadioGroup.Item value="lg" className="px-radio"><RadioGroup.Indicator className="px-radio-dot" /></RadioGroup.Item>
+          <RadioGroup.Item id="px-radio-lg" value="lg" className="px-radio"><RadioGroup.Indicator className="px-radio-dot" /></RadioGroup.Item>
           <label htmlFor="px-radio-lg">大</label>
         </div>
       </RadioGroup.Root>
@@ -347,7 +347,7 @@ const DEMOS = {
     parts: ['Root', 'Viewport', 'Scrollbar', 'Thumb', 'Corner'],
     node: (
       <ScrollArea.Root className="px-scrollarea">
-        <ScrollArea.Viewport className="px-scrollarea-viewport">
+        <ScrollArea.Viewport className="px-scrollarea-viewport" tabIndex={0} aria-label="特性列表滚动区域">
           <div className="px-scrollarea-inner">
             {['无障碍', '无样式', '开放', '非受控', '开发者体验', '渐进采用', 'Tree-shakeable'].map((t) => (
               <p key={t} className="px-scrollarea-line">{t}</p>
@@ -405,7 +405,7 @@ function ProgressDemo() {
   const [value, setValue] = useState(38);
   return (
     <div className="px-progress-wrap">
-      <Progress.Root className="px-progress" value={value}>
+      <Progress.Root className="px-progress" value={value} aria-label="上传进度">
         <Progress.Indicator className="px-progress-indicator" style={{ transform: `translateX(-${100 - value}%)` }} />
       </Progress.Root>
       <div className="px-row">
@@ -445,13 +445,13 @@ function ToastDemo() {
 
 const KEYS = Object.keys(DEMOS) as DemoKey[];
 
-export default function Playground({ name }: { name: DemoKey }) {
-  const demo = DEMOS[name];
+export default function Playground({ name }: { name: string }) {
+  const demo = DEMOS[name as DemoKey];
   if (!demo) return null;
   return (
     <div className="px-playground" data-ui>
       <div className="px-playground-parts">
-        <p className="px-playground-parts-title">这个组件导出的部件</p>
+        <p className="px-playground-parts-title">本示例用到的部件</p>
         <ul className="px-playground-parts-list">
           {demo.parts.map((p) => (
             <li key={p}><code>{name}.{p}</code></li>

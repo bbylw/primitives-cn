@@ -7,6 +7,7 @@ import { useState } from 'react';
 
 export default function FragmentWallTwo() {
   const [v, setV] = useState([35]);
+  const value = v[0] ?? 0;
   return (
     <>
       <div className="fragments" data-ui>
@@ -18,12 +19,11 @@ export default function FragmentWallTwo() {
               onValueChange={setV}
               max={100}
               className="px-slider"
-              aria-label="片段示例数值"
             >
               <Slider.Track className="px-slider-track">
                 <Slider.Range className="px-slider-range" />
               </Slider.Track>
-              <Slider.Thumb className="px-slider-thumb" />
+              <Slider.Thumb className="px-slider-thumb" aria-label="片段示例数值" />
             </Slider.Root>
           </div>
         </div>
@@ -65,10 +65,10 @@ export default function FragmentWallTwo() {
         <div className="fragment">
           <p className="fragment-label">Progress</p>
           <div className="fragment-body">
-            <Progress.Root className="px-progress" value={v[0]}>
+            <Progress.Root className="px-progress" value={value} aria-label="示例进度">
               <Progress.Indicator
                 className="px-progress-indicator"
-                style={{ transform: `translateX(-${100 - v[0]}%)` }}
+                style={{ transform: `translateX(-${100 - value}%)` }}
               />
             </Progress.Root>
           </div>

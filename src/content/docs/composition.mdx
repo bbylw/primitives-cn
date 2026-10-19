@@ -24,11 +24,11 @@ Radix Primitives 被设计为可以按你的需要改造。开放的组件架构
 - `Dialog.Description`
 - `Dialog.Close`
 
-它们的清单不是写在文档里就算数，而是各包真实导出的名字。本站首页的解剖台里显示的属性就来自这些部件渲染出的真实 DOM。
+它们的清单不是写在文档里就算数，而是各包真实导出的名字：[组件索引](/components/)里的部件列表由脚本从包的 `export` 语句中抽取。
 
 ## asChild
 
-每个部件都接受 `asChild`。传了之后，组件会跳过自己渲染的那一层元素，把自己的 props 合并到你给的子元素上。
+多数渲染 DOM 的部件接受 `asChild`。传了之后，组件会跳过自己渲染的那一层元素，把自己的 props 合并到你给的子元素上；纯逻辑部件（例如 `Dialog.Portal`）则没有这个属性。
 
 ```tsx
 import { Dialog } from 'radix-ui';
@@ -46,7 +46,10 @@ import { Dialog } from 'radix-ui';
 因为部件是公开的，你可以写一层自己的封装，之后整个项目都用自己的那层：
 
 ```tsx
-import { Dialog, type DialogProps } from 'radix-ui';
+import type { ComponentProps } from 'react';
+import { Dialog } from 'radix-ui';
+
+type DialogProps = ComponentProps<typeof Dialog.Root>;
 
 function DialogShell({ children, ...props }: DialogProps) {
   return (

@@ -43,13 +43,12 @@ function SliderCard() {
           onValueChange={setV}
           max={100}
           step={1}
-          aria-label="音量"
           id="dg-slider"
         >
           <Slider.Track className="px-slider-track">
             <Slider.Range className="px-slider-range" />
           </Slider.Track>
-          <Slider.Thumb className="px-slider-thumb" />
+          <Slider.Thumb className="px-slider-thumb" aria-label="音量" />
         </Slider.Root>
         <span className="small nums">
           aria-valuenow = <b>{v[0]}</b> · 支持方向键
@@ -127,7 +126,7 @@ function ProgressCard() {
             <span>上传进度</span>
             <b className="nums">{v}%</b>
           </div>
-          <Progress.Root className="px-progress" value={v} id="dg-prog">
+          <Progress.Root className="px-progress" value={v} id="dg-prog" aria-label="上传进度">
             <Progress.Indicator className="px-progress-indicator" style={{ transform: `translateX(-${100 - v}%)` }} />
           </Progress.Root>
         </div>

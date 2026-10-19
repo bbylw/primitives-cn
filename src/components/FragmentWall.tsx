@@ -46,11 +46,11 @@ export default function FragmentWall() {
         <div className="fragment-body">
           <RadioGroup.Root defaultValue="b" className="px-radiogroup" aria-label="密度">
             <div className="px-radio-item">
-              <RadioGroup.Item value="a" className="px-radio"><RadioGroup.Indicator className="px-radio-dot" /></RadioGroup.Item>
+              <RadioGroup.Item id="fr-ra" value="a" className="px-radio"><RadioGroup.Indicator className="px-radio-dot" /></RadioGroup.Item>
               <label htmlFor="fr-ra">紧凑</label>
             </div>
             <div className="px-radio-item">
-              <RadioGroup.Item value="b" className="px-radio"><RadioGroup.Indicator className="px-radio-dot" /></RadioGroup.Item>
+              <RadioGroup.Item id="fr-rb" value="b" className="px-radio"><RadioGroup.Indicator className="px-radio-dot" /></RadioGroup.Item>
               <label htmlFor="fr-rb">标准</label>
             </div>
           </RadioGroup.Root>
@@ -60,7 +60,7 @@ export default function FragmentWall() {
       <div className="fragment">
         <p className="fragment-label">Progress</p>
         <div className="fragment-body">
-          <Progress.Root className="px-progress" value={64}>
+          <Progress.Root className="px-progress" value={64} aria-label="示例进度">
             <Progress.Indicator className="px-progress-indicator" style={{ transform: 'translateX(-36%)' }} />
           </Progress.Root>
         </div>
@@ -103,7 +103,7 @@ export default function FragmentWall() {
         <p className="fragment-label">ScrollArea</p>
         <div className="fragment-body">
           <ScrollArea.Root className="px-scrollarea">
-            <ScrollArea.Viewport className="px-scrollarea-viewport">
+            <ScrollArea.Viewport className="px-scrollarea-viewport" tabIndex={0} aria-label="特性列表滚动区域">
               <div className="px-scrollarea-inner">
                 {['无障碍', '无样式', '开放', '非受控', '开发者体验', '渐进采用'].map((t) => (
                   <p key={t} className="px-scrollarea-line">{t}</p>

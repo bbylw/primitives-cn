@@ -8,7 +8,7 @@ import { componentCount, totalParts, byCategory, CATEGORY_LABELS, CATEGORY_ORDER
  * 数字与部件名全部来自 radix-ui@1.8.1 的真实导出（scripts/extract-parts.mjs）。
  */
 
-const cats = CATEGORY_ORDER.map((c) => ({ label: CATEGORY_LABELS[c], n: byCategory(c).length }));
+const cats = CATEGORY_ORDER.map((key) => ({ key, label: CATEGORY_LABELS[key], n: byCategory(key).length }));
 
 const feats = [
   {
@@ -32,7 +32,7 @@ const feats = [
 
 <Site
   title="Radix Primitives 中文站 — 无样式、无障碍的 React 底层组件"
-  description="Radix Primitives 的中文介绍与上手文档：无障碍、无样式、开放组合、非受控，附 33 个组件与 162 个部件的真实索引与可操作演示。"
+  description={`Radix Primitives 的中文介绍与上手文档：无障碍、无样式、开放组合、非受控，附 ${componentCount} 个组件与 ${totalParts} 个部件的真实索引与可操作演示。`}
 >
   <!-- ============ Hero ============ -->
   <section class="hero">
@@ -91,7 +91,7 @@ const feats = [
     </div>
     <div class="cats anim">
       {cats.map((c) => (
-        <a class="cat" href={`/components/#cat-${c.label}`}>
+        <a class="cat" href={`/components/#cat-${c.key}`}>
           <span class="cat-n nums">{c.n}</span>
           <span class="cat-l">{c.label}</span>
         </a>

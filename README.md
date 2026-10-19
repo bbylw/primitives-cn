@@ -1,54 +1,80 @@
-[![Radix Primitives Logo](https://raw.githubusercontent.com/radix-ui/primitives/main/primitives.png)](https://radix-ui.com/primitives)
+# Radix Primitives 中文站
 
-# Radix Primitives
+Radix Primitives 的中文文档与可操作示例，基于 Astro 构建的静态站点。
 
-**一个用于构建高质量、无障碍设计系统与 Web 应用的开源 UI 组件库。**
+内容译自 [Radix Primitives 官方文档](https://www.radix-ui.com/primitives/docs/overview/introduction)。组件与部件清单不是手写的：`scripts/extract-parts.mjs` 从已安装的 `radix-ui@1.8.1` 包的公开 `export` 语句中抽取。
 
-Radix Primitives 是一套底层 UI 组件库，重点关注无障碍性、可定制性与开发者体验。你可以将这些组件作为设计系统的基础层，也可以按需逐步采用。
+## 技术栈
 
----
+- Astro 7（静态输出）+ MDX 内容集合
+- React 19 islands（`radix-ui` 1.8.1 真实组件）
+- Tailwind CSS 4 + 自定义 Radix 风格令牌
+- 自托管 Inter / JetBrains Mono 可变字体
 
-## 安装
+## 环境
 
-首先，如果尚未安装 pnpm，请先在终端中运行：
-
-```bash
-npm install -g pnpm
-```
-
-然后安装依赖：
+- Node.js ≥ 22.12
+- Bun 1.4（`bun.lock` 为唯一锁文件）
 
 ```bash
-pnpm install
+bun install
+bun run dev        # 本地开发
+bun run build      # 生成静态站点到 dist/
+bun run preview    # 预览 dist/
 ```
 
-## 文档
+## 常用脚本
 
-完整的文档请访问 [radix-ui.com/primitives/docs](https://www.radix-ui.com/primitives/docs)。
+| 命令 | 作用 |
+| --- | --- |
+| `bun run check` | `astro check`，检查 Astro/TS/TSX 类型 |
+| `bun run sync:parts` | 从 node_modules 重新抽取部件清单，写入 `src/data/parts.json` |
+| `bun run count:categories` | 打印各分类组件数与部件总数，核对文档表格 |
+| `bun run verify:links` | 检查 `dist/` 的站内链接、锚点与资源，需先构建 |
+| `bun run verify:hydration [base]` | 用无头 Chrome 检查每个页面的 island 是否水合 |
+| `bun run verify:interactions [base]` | 用真实指针/键盘事件验证关键交互 |
 
-## 发布记录
+`verify:hydration` 与 `verify:interactions` 需要本机安装 Chrome / Edge / Chromium，并先启动一个预览服务。base 也可以用 `BASE_URL` 环境变量传入：
 
-更新日志请访问 [radix-ui.com/primitives/docs/overview/releases](https://www.radix-ui.com/primitives/docs/overview/releases)。
+```bash
+bun run preview
+BASE_URL=http://localhost:4321 bun run verify:hydration
+BASE_URL=http://localhost:4321 bun run verify:interactions
+```
 
-## 贡献
+## 目录
 
-请遵循我们的[贡献指南](https://github.com/radix-ui/primitives/blob/main/.github/CONTRIBUTING.md)。
+```text
+src/
+  components/    React islands 与 Astro 包装组件
+  content/docs/  MDX 文档
+  data/          组件元数据与由脚本生成的 parts.json
+  layouts/       Base / Site / Doc 布局
+  pages/         首页、组件索引、文档路由、404、robots
+  styles/        global.css 与 playground.css
+scripts/         部件抽取与浏览器验证脚本
+assets/          credits.json（图片出处与许可证）
+public/          静态资源（图片、favicon）
+```
 
----
+## 部署
 
-## 社区
+站点通过 GitHub Actions 部署到 GitHub Pages，线上地址为 <https://primitives.ndjp.net>。推送到 `main` 或手动触发 `Deploy` 工作流即可发布，构建时自动传入 `SITE_URL`。
 
-- [Discord](https://discord.com/invite/7Xb99uG) - 加入 Radix 社区，提问交流、分享技巧。
-- [Twitter](https://twitter.com/radix_ui) - 获取更新、公告、博客文章以及各类 Radix 使用技巧。
+- `public/CNAME` 固定自定义域名，Astro 构建时原样复制到产物根目录。
+- DNS：`primitives.ndjp.net` 指向 GitHub Pages 的 A 记录（`185.199.108.153`、`185.199.109.153`、`185.199.110.153`、`185.199.111.153`）。
+- 本地构建若要输出 canonical、Open Graph URL 与 `sitemap-index.xml`，需手动传入站点地址：
 
-## 致谢
+  ```bash
+  SITE_URL=https://primitives.ndjp.net bun run build
+  ```
 
-<a href="https://www.chromatic.com/"><img src="https://user-images.githubusercontent.com/321738/84662277-e3db4f80-af1b-11ea-88f5-91d67a5e59f6.png" width="153" height="30" alt="Chromatic" /></a>
+不传 `SITE_URL` 时也能正常构建，只是不生成 canonical 与 sitemap；`robots.txt` 会在未配置站点地址时省略 Sitemap 行。
 
-感谢 [Chromatic](https://www.chromatic.com/) 提供视觉测试平台，帮助我们审查 UI 变更、捕捉视觉回归问题。
+## 图片许可
 
----
+页面中的照片来自 Wikimedia Commons，单独按 Creative Commons 条款授权，具体作者、许可证与来源见每页图注及 [`assets/credits.json`](assets/credits.json)。
 
 ## 许可证
 
-基于 MIT 许可证授权，版权 © 2022 至今 [WorkOS](https://workos.com)。
+代码与文档以 MIT 许可证发布，详见 [LICENSE](LICENSE)。上游 Radix Primitives 的版权归 WorkOS 所有。

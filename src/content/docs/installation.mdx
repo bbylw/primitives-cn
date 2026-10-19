@@ -53,16 +53,12 @@ yarn add radix-ui
 
 ## 从源码构建
 
-如果你要在这个仓库里工作，先确保装好 pnpm：
+这个站点仓库使用 Bun 和 `bun.lock`：
 
 ```bash
-npm install -g pnpm
-```
-
-然后安装依赖：
-
-```bash
-pnpm install
+bun install
+bun run dev      # 本地开发
+bun run build    # 产出静态站点到 dist/
 ```
 
 下面是一个真实的选择器，它同时也是上面两个安装方式的可操作版本：

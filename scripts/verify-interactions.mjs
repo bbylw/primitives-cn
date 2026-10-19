@@ -5,9 +5,9 @@
  * 3) 组件页：Playground 的 Switch 可切换
  * 4) 文档页：DocDemo 的 Switch 翻转且属性表更新
  */
-import { Browser, sleep } from 'file:///C:/Users/bbylw/.workbuddy/skills/frontend-studio/scripts/lib/cdp.mjs';
+import { Browser, sleep } from './lib/cdp.mjs';
 
-const base = process.argv[2] || 'http://localhost:4399';
+const base = process.argv[2] || process.env.BASE_URL || 'http://localhost:4321';
 const b = await Browser.launch();
 let pass = 0, fail = 0;
 const check = (name, ok, detail = '') => {

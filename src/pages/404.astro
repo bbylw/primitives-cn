@@ -1,0 +1,55 @@
+---
+import Site from '../layouts/Site.astro';
+---
+
+<Site
+  title="页面不存在 — Radix Primitives 中文"
+  description="这个地址没有对应的页面。返回首页或浏览组件索引。"
+>
+  <section class="nf sec">
+    <p class="kicker">404</p>
+    <h1>这一页不存在。</h1>
+    <p class="lead">地址可能拼错了，或者页面已经被移动。可以从下面两个入口继续。</p>
+    <div class="actions">
+      <a class="btn" href="/">返回首页</a>
+      <a class="btn outline" href="/components/">浏览组件索引</a>
+    </div>
+  </section>
+</Site>
+
+<style>
+  .nf {
+    padding-top: clamp(72px, 12vw, 160px);
+    padding-bottom: clamp(72px, 12vw, 160px);
+    max-width: 720px;
+  }
+  .kicker {
+    display: inline-flex;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 999px;
+    margin-bottom: 20px;
+  }
+  .nf h1 {
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.04;
+    margin-bottom: 16px;
+  }
+  .lead {
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--muted);
+    max-width: 52ch;
+    margin-bottom: 28px;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+</style>
