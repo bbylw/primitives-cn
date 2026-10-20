@@ -11,7 +11,11 @@ const NAV = [
 <header class="topbar">
   <div class="topbar-in">
     <a href="/" class="brand">
-      <span class="mark" aria-hidden="true"></span>
+      <svg class="mark" viewBox="0 0 35 35" aria-hidden="true">
+        <path d="M17 35C10.3726 35 5 30.0751 5 24C5 17.9249 10.3726 13 17 13L17 35Z" fill="currentColor"></path>
+        <rect x="5" width="12" height="12" fill="currentColor"></rect>
+        <circle cx="24" cy="6" r="6" fill="currentColor"></circle>
+      </svg>
       <span class="brand-name">Radix Primitives</span>
     </a>
 
@@ -90,18 +94,9 @@ const NAV = [
   .brand .mark {
     width: 22px;
     height: 22px;
-    border-radius: 6px;
-    background: var(--accent);
-    position: relative;
     flex: none;
-  }
-  .brand .mark::after {
-    content: "";
-    position: absolute;
-    inset: 6px 7px;
-    border-left: 2.5px solid #fff;
-    border-bottom: 2.5px solid #fff;
-    transform: rotate(-45deg) translate(0, -1px);
+    display: block;
+    color: #1c2024;
   }
   .brand-name {
     overflow: hidden;
